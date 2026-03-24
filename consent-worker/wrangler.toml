@@ -1,0 +1,7 @@
+name = "eac-consent-log"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "CONSENT_STORE"
+id = "a7396e2b455f4a509a830d9668e4b9d4"

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.A.C Insurance - Welcome</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+        :root {
+            /* Brand Colors extracted from main.css */
+            --brand-gold: #BC9042;
+            --brand-gold-dark: #A8742D;
+            --brand-gold-light: #D4A855;
+            --brand-dark: #222222;
+            --bg-light: #fbfbfb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+            padding: 8vh 2vw;
+            /* Subtle warm gradient background for premium feel */
+            background: radial-gradient(circle at center, #ffffff 0%, #f4f1ea 100%);
+        }
+
+        .loader-container.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Elegant Gold Mesh Overlay */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(188, 144, 66, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(168, 116, 45, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Gold Dust Particles */
+        .gold-dust-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .gold-speck {
+            position: absolute;
+            background: var(--brand-gold);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: floatUp 15s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Top section - Company branding */
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            flex: 0 0 auto;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .company-name {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--brand-dark);
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.5vh;
+            max-width: 90vw;
+        }
+
+        .tagline {
+            color: var(--brand-gold);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        /* Elegant underline for tagline */
+        .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: var(--brand-gold-dark);
+        }
+
+        /* Center section - Logo */
+        .center-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: zoomIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+            flex: 0 1 auto;
+            z-index: 2;
+        }
+
+        .logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(18rem, 30vmin, 35rem);
+            height: clamp(18rem, 30vmin, 35rem);
+            background: #ffffff;
+            border-radius: 50%; /* Circle feels more premium */
+            box-shadow: 
+                0 15px 35px rgba(188, 144, 66, 0.15),
+                0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+        }
+
+        /* Animated Gold Ring */
+        .logo-ring {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--brand-gold);
+            border-bottom-color: var(--brand-gold-light);
+            animation: spin 3s linear infinite;
+            opacity: 0.6;
+        }
+
+        .logo-ring::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-left-color: var(--brand-gold-dark);
+            border-right-color: var(--brand-gold);
+            animation: spinReverse 4s linear infinite;
+            opacity: 0.4;
+        }
+
+        .logo-container img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Bottom section - Progress and contact */
+        .bottom-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
+            flex: 0 0 auto;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .progress-container {
+            width: clamp(20rem, 50vw, 35rem);
+            margin-bottom: 2vh;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(188, 144, 66, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-gold-dark), var(--brand-gold), var(--brand-gold-light));
+            width: 0%;
+            animation: progressFill 4.5s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(188, 144, 66, 0.4);
+        }
+
+        .status-text {
+            color: var(--brand-dark);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 3vh;
+            min-height: 1.5em;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5vh;
+            text-align: center;
+        }
+
+        .contact-primary {
+            color: var(--brand-gold-dark);
+            font-size: clamp(1rem, 1.8vw, 1.4rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-secondary {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="gradient-overlay"></div>
+        
+        <div class="gold-dust-container" id="dust-container">
+            </div>
+
+        <div class="top-section">
+            <p class="tagline">Different Because We Care</p>
+        </div>
+
+        <div class="center-section">
+            <div class="logo-container">
+                <div class="logo-ring"></div>
+                <img src="assets/img/logo_gray.png" alt="E.A.C Insurance Logo">
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="status-text">Loading Premium Solutions...</div>
+
+            <div class="contact-info">
+                <div class="contact-primary">+357 96 660 113</div>
+                <div class="contact-secondary">Direct Access • 24/7 Support</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loader = document.getElementById('loader');
+        const statusText = document.querySelector('.status-text');
+
+        // Generate Gold Dust
+        const dustContainer = document.getElementById('dust-container');
+        for(let i = 0; i < 15; i++) {
+            const speck = document.createElement('div');
+            speck.classList.add('gold-speck');
+            
+            // Random size between 2px and 5px
+            const size = Math.random() * 3 + 2;
+            speck.style.width = `${size}px`;
+            speck.style.height = `${size}px`;
+            
+            // Random position
+            speck.style.left = `${Math.random() * 100}%`;
+            speck.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation delay
+            speck.style.animationDelay = `${Math.random() * 5}s`;
+            speck.style.animationDuration = `${10 + Math.random() * 10}s`;
+            
+            dustContainer.appendChild(speck);
+        }
+
+        const professionalMessages = [
+            'Verifying Coverage Options...',
+            'Landing to the Future of Insurance...',
+            'Preparing Your Experience...'
+        ];
+
+        let messageIndex = 0;
+
+        const updateMessage = () => {
+            if (messageIndex < professionalMessages.length) {
+                // Smooth fade text
+                statusText.style.opacity = 0;
+                setTimeout(() => {
+                    statusText.textContent = professionalMessages[messageIndex];
+                    statusText.style.opacity = 1;
+                    messageIndex++;
+                }, 300);
+                setTimeout(updateMessage, 1400);
+            }
+        };
+
+        setTimeout(updateMessage, 1000);
+
+        // Redirect after 4.5 seconds
+        setTimeout(() => {
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'main.html';
+            }, 800);
+        }, 4500);
+
+        // Skip with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                window.location.href = 'main.html';
+            }
+        });
+    </script>
+</body>
+</html>
