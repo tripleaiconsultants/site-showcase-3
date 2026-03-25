@@ -3478,7 +3478,8 @@ body.dark-mode .header-mode-toggle .sun-icon {
 }
 
 .legal-content code {
-  color: var(--default-color);
+  color: var(--default-color) !important;
+  background: none;
 }
 
 .legal-content ul,
