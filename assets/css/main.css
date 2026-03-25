@@ -1014,16 +1014,12 @@ html.dark-mode body {
 }
 
 /* Language switcher dropdown — compact size */
-.navmenu .dropdown:last-child ul {
-  min-width: auto;
-}
-
 .navmenu .dropdown:last-child ul li {
-  min-width: auto;
+  min-width: auto !important;
 }
 
-.navmenu .dropdown:last-child ul a {
-  padding: 8px 20px;
+.navmenu .dropdown:last-child ul {
+  min-width: auto !important;
 }
 
 /* Navmenu - Mobile */
