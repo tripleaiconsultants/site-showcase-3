@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- EN Pages -->
+  <url><loc>https://www.eacinsurance.com/main.html</loc><priority>1.0</priority></url>
+  <url><loc>https://www.eacinsurance.com/motor.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/health.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/home.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/business.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/privacy-policy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eacinsurance.com/cookie-policy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eacinsurance.com/disclosures.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eacinsurance.com/terms.html</loc><priority>0.3</priority></url>
+  <!-- EL Pages -->
+  <url><loc>https://www.eacinsurance.com/EL/main.html</loc><priority>1.0</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/motor.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/health.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/home.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/business.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/privacy-policy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/cookie-policy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/disclosures.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/terms.html</loc><priority>0.3</priority></url>
+</urlset>

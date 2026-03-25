@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /forms/
+Disallow: /consent-worker/
+
+Sitemap: https://www.eacinsurance.com/sitemap.xml

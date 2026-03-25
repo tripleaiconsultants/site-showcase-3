@@ -8,7 +8,7 @@
  */
 
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',   // Replace '*' with your domain in production
+  'Access-Control-Allow-Origin': '*',   // TODO: Replace '*' with your production domain once hosted
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
