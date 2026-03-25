@@ -1013,6 +1013,18 @@ html.dark-mode body {
   border-radius: 4px;
 }
 
+/* Language switcher dropdown — compact size */
+.navmenu .dropdown:last-child ul {
+  min-width: auto;
+}
+
+.navmenu .dropdown:last-child ul li {
+  min-width: auto;
+}
+
+.navmenu .dropdown:last-child ul a {
+  padding: 8px 20px;
+}
 
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
