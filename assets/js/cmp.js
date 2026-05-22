@@ -105,9 +105,23 @@
     });
   }
 
+  var botpressLoaded = false;
+
+  function loadBotpress() {
+    if (botpressLoaded) return;
+    botpressLoaded = true;
+    var s1 = document.createElement('script');
+    s1.src = 'https://cdn.botpress.cloud/webchat/v3.2/inject.js';
+    s1.defer = true;
+    document.body.appendChild(s1);
+    var s2 = document.createElement('script');
+    s2.src = 'https://files.bpcontent.cloud/2025/08/31/06/20250831060030-72DVBA9B.js';
+    s2.defer = true;
+    document.body.appendChild(s2);
+  }
+
   function applyConsent(choices) {
-    // Gate analytics/marketing scripts here if needed
-    // Example: if (choices.analytics) { loadAnalytics(); }
+    if (choices.preferences) { loadBotpress(); }
   }
 
   // --- Banner ---
