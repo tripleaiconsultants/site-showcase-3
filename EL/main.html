@@ -966,78 +966,53 @@
   <script>
     let hasOpenedChat = sessionStorage.getItem('hasOpenedChat') === 'true';
 
-    const createChatBubble = () => {
-      if (document.getElementById("custom-chat-bubble")) {
-        return;
-      }
-
-      const bubble = document.createElement("div");
-      bubble.id = "custom-chat-bubble";
-      bubble.className = "custom-chat-bubble";
-      bubble.innerText = "Εδώ για να σας βοηθήσω!";
-      bubble.style.display = hasOpenedChat ? 'none' : 'block';
-
-      document.body.appendChild(bubble);
-
-      bubble.addEventListener('click', () => {
-        window.botpress.open();
-        hasOpenedChat = true;
-        sessionStorage.setItem('hasOpenedChat', 'true');
+    const onBotpressAvailable = () => {
+      window.botpress.on('webchat:ready', () => {
+        let bubble = document.getElementById('custom-chat-bubble');
+        if (!bubble) {
+          bubble = document.createElement('div');
+          bubble.id = 'custom-chat-bubble';
+          bubble.className = 'custom-chat-bubble';
+          bubble.innerText = 'Εδώ για να σας βοηθήσω!';
+          document.body.appendChild(bubble);
+          bubble.addEventListener('click', () => {
+            window.botpress.open();
+            hasOpenedChat = true;
+            sessionStorage.setItem('hasOpenedChat', 'true');
+          });
+        }
+        bubble.style.display = hasOpenedChat ? 'none' : 'block';
+        bubble.classList.remove('no-animations');
+        document.body.classList.remove('no-chat-animations', 'chat-unavailable');
       });
 
       window.botpress.on('webchat:opened', () => {
-        bubble.style.display = 'none';
+        const bubble = document.getElementById('custom-chat-bubble');
+        if (bubble) bubble.style.display = 'none';
         hasOpenedChat = true;
         sessionStorage.setItem('hasOpenedChat', 'true');
       });
       window.botpress.on('webchat:closed', () => {
-        // Don't show bubble again after first interaction
         if (!hasOpenedChat) {
-          bubble.style.display = 'block';
+          const bubble = document.getElementById('custom-chat-bubble');
+          if (bubble) bubble.style.display = 'block';
         }
       });
     };
 
-    const setupBotListener = () => {
-      if (window.botpress && window.botpress.on) {
-        window.botpress.on('webchat:ready', () => {
-          // Make sure bubble exists and restore bubble visibility/animations
-          if (!document.getElementById("custom-chat-bubble")) {
-            createChatBubble();
-          } else {
-            const bubbleEl = document.getElementById('custom-chat-bubble');
-            bubbleEl.style.display = hasOpenedChat ? 'none' : 'block';
-            bubbleEl.classList.remove('no-animations');
-          }
-          document.body.classList.remove('no-chat-animations', 'chat-unavailable');
-        });
-      } else {
-        setTimeout(setupBotListener, 500);
-      }
+    const onBotpressFailed = () => {
+      document.body.classList.add('no-chat-animations', 'chat-unavailable');
+      const bubble = document.getElementById('custom-chat-bubble');
+      if (bubble) { bubble.classList.add('no-animations'); bubble.style.display = 'none'; }
     };
 
-    setupBotListener();
-
-    // If Botpress never becomes available (older phones / blocked scripts),
-    // disable chat-related animations and hide the bubble so it doesn't remain
-    // on pages where the chatbot never loads.
-    // Test helper: force 'no bot' behavior with ?disableBot=1
     if (new URLSearchParams(window.location.search).get('disableBot') === '1') {
       document.body.classList.add('no-chat-animations', 'chat-unavailable');
-      const bubbleEl = document.getElementById('custom-chat-bubble');
-      if (bubbleEl) { bubbleEl.classList.add('no-animations'); bubbleEl.style.display = 'none'; }
+    } else {
+      window.addEventListener('cmp:botpress-ready', onBotpressAvailable, { once: true });
+      window.addEventListener('cmp:botpress-failed', onBotpressFailed, { once: true });
+      if (window.botpress && window.botpress.on) onBotpressAvailable();
     }
-    setTimeout(() => {
-      if (!window.botpress || !window.botpress.on) {
-        document.body.classList.add('no-chat-animations');
-        document.body.classList.add('chat-unavailable');
-        const bubbleEl = document.getElementById('custom-chat-bubble');
-        if (bubbleEl) {
-          bubbleEl.classList.add('no-animations');
-          bubbleEl.style.display = 'none';
-        }
-      }
-    }, 4000);
   </script>
 
   <!-- Popup Widget Script -->

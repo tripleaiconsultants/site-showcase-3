@@ -118,6 +118,20 @@
     s2.src = 'https://files.bpcontent.cloud/2025/08/31/06/20250831060030-72DVBA9B.js';
     s2.defer = true;
     document.body.appendChild(s2);
+    var attempts = 0;
+    var poll = setInterval(function () {
+      if (window.botpress && window.botpress.on) {
+        clearInterval(poll);
+        try {
+          window.dispatchEvent(new CustomEvent('cmp:botpress-ready'));
+        } catch (e) { }
+      } else if (++attempts > 50) {
+        clearInterval(poll);
+        try {
+          window.dispatchEvent(new CustomEvent('cmp:botpress-failed'));
+        } catch (e) { }
+      }
+    }, 200);
   }
 
   function applyConsent(choices) {
