@@ -640,24 +640,24 @@
     let hasOpenedChat = sessionStorage.getItem('hasOpenedChat') === 'true';
 
     const onBotpressAvailable = () => {
-      window.botpress.on('webchat:ready', () => {
-        let bubble = document.getElementById('custom-chat-bubble');
-        if (!bubble) {
-          bubble = document.createElement('div');
-          bubble.id = 'custom-chat-bubble';
-          bubble.className = 'custom-chat-bubble';
-          bubble.innerText = 'Εδώ για να σας βοηθήσω!';
-          document.body.appendChild(bubble);
-          bubble.addEventListener('click', () => {
+      let bubble = document.getElementById('custom-chat-bubble');
+      if (!bubble) {
+        bubble = document.createElement('div');
+        bubble.id = 'custom-chat-bubble';
+        bubble.className = 'custom-chat-bubble';
+        bubble.innerText = 'Εδώ για να σας βοηθήσω!';
+        document.body.appendChild(bubble);
+        bubble.addEventListener('click', () => {
+          if (window.botpress) {
             window.botpress.open();
             hasOpenedChat = true;
             sessionStorage.setItem('hasOpenedChat', 'true');
-          });
-        }
-        bubble.style.display = hasOpenedChat ? 'none' : 'block';
-        bubble.classList.remove('no-animations');
-        document.body.classList.remove('no-chat-animations', 'chat-unavailable');
-      });
+          }
+        });
+      }
+      bubble.style.display = hasOpenedChat ? 'none' : 'block';
+      bubble.classList.remove('no-animations');
+      document.body.classList.remove('no-chat-animations', 'chat-unavailable');
 
       window.botpress.on('webchat:opened', () => {
         const bubble = document.getElementById('custom-chat-bubble');

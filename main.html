@@ -938,25 +938,23 @@
     let hasOpenedChat = false;
 
     const onBotpressAvailable = () => {
-      window.botpress.on('webchat:ready', () => {
-        let bubble = document.getElementById('custom-chat-bubble');
-        if (!bubble) {
-          bubble = document.createElement('div');
-          bubble.id = 'custom-chat-bubble';
-          bubble.className = 'custom-chat-bubble';
-          bubble.innerText = 'Here to assist you!';
-          document.body.appendChild(bubble);
-          bubble.addEventListener('click', () => {
-            if (window.botpress) {
-              window.botpress.open();
-              hasOpenedChat = true;
-            }
-          });
-        }
-        bubble.style.display = 'block';
-        bubble.classList.remove('no-animations');
-        document.body.classList.remove('no-chat-animations', 'chat-unavailable');
-      });
+      let bubble = document.getElementById('custom-chat-bubble');
+      if (!bubble) {
+        bubble = document.createElement('div');
+        bubble.id = 'custom-chat-bubble';
+        bubble.className = 'custom-chat-bubble';
+        bubble.innerText = 'Here to assist you!';
+        document.body.appendChild(bubble);
+        bubble.addEventListener('click', () => {
+          if (window.botpress) {
+            window.botpress.open();
+            hasOpenedChat = true;
+          }
+        });
+      }
+      bubble.style.display = 'block';
+      bubble.classList.remove('no-animations');
+      document.body.classList.remove('no-chat-animations', 'chat-unavailable');
 
       window.botpress.on('webchat:opened', () => {
         const bubble = document.getElementById('custom-chat-bubble');
