@@ -112,12 +112,12 @@
     botpressLoaded = true;
     var s1 = document.createElement('script');
     s1.src = 'https://cdn.botpress.cloud/webchat/v3.2/inject.js';
-    s1.defer = true;
+    s1.onload = function () {
+      var s2 = document.createElement('script');
+      s2.src = 'https://files.bpcontent.cloud/2025/08/31/06/20250831060030-72DVBA9B.js';
+      document.body.appendChild(s2);
+    };
     document.body.appendChild(s1);
-    var s2 = document.createElement('script');
-    s2.src = 'https://files.bpcontent.cloud/2025/08/31/06/20250831060030-72DVBA9B.js';
-    s2.defer = true;
-    document.body.appendChild(s2);
     var attempts = 0;
     var poll = setInterval(function () {
       if (window.botpress && window.botpress.on) {
