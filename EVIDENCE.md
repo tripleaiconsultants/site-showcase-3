@@ -772,3 +772,42 @@ NO CHROME FOUND
 ```
 
 **Action required:** Run Lighthouse manually from Chrome DevTools (Audits tab) on main.html and one EL page. Save JSON reports to `evidence/lighthouse-baseline-main.json` and `evidence/lighthouse-baseline-el-main.json`. Marinos to run manually and provide scores.
+
+## Phase 4a — Integration check
+
+**Performed after all 4 Phase 4a commits (821f6d8 through 8d16493):**
+
+```
+=== 1. Documentation artefacts ===
+$ ls -la ROPA.md SUBPROCESSORS.md SECURITY.md INCIDENT-RESPONSE.md AI-LITERACY-LOG.md ASSETS.md NOTES.md
+All 7 files present ✓
+
+=== 2. Cross-reference verification ===
+$ grep -c 'GitHub|Formspree|Microsoft|Botpress|OpenAI|Make|Google|Cloudflare' SUBPROCESSORS.md
+16 — all 8 named sub-processors covered ✓
+
+$ sed -n '/<h2>4./,/<h2>5./p' privacy-policy.html | grep -c "<li>"
+9 — Section 4 bullet count matches (8 sub-processors + 1 insurance companies) ✓
+
+$ grep -c '## Processing activity' ROPA.md
+4 — covers contact form, chatbot, consent logging, marketing ✓
+
+=== 3. Archive ===
+$ ls _archive/contact.php — exists ✓
+$ ls forms/contact.php — does not exist ✓
+
+=== 4. Honeypot ===
+$ grep -c '_gotcha' main.html EL/main.html
+main.html: 1 ✓
+EL/main.html: 1 ✓
+
+=== 5. BootstrapMade credit ===
+$ grep -c 'Designed by.*BootstrapMade' --include="*.html" -r .
+24 pages (18 active + 6 template) ✓
+index.html: 0 (no footer) ✓
+EL/index.html: 0 (no footer) ✓
+
+=== 6. Commit count ===
+$ git log --oneline | wc -l
+30 total commits (13 pre-compliance + 17 compliance) ✓
+```

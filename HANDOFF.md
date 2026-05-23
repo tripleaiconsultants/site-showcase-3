@@ -1,4 +1,4 @@
-# HANDOFF.md — Phase 1 + Phase 1.5 + Phase 3 Compliance Pass Complete
+# HANDOFF.md — Phase 1 + Phase 1.5 + Phase 3 + Phase 4a Compliance Pass Complete
 
 ## What was delivered
 
@@ -88,10 +88,69 @@ Issues 1, 2, 3, 4, 7, 8, and 10 are now closed. The remaining issues require ext
 | 11 | b9b59a1 | 3 | compliance(phase-3): add OpenAI sub-processor and chatbot retention to privacy policy |
 | 12 | d6b2d2d | 3 | compliance(phase-3): document dashboard audit findings in EVIDENCE.md and HANDOFF.md |
 
+---
+
+## Phase 4a — Hardening Sweep (Blocks B, D, E, F)
+
+### What was delivered
+
+Phase 4a is a hardening sweep covering documentation, asset management, form security, template license compliance, and SEO baselining. Block F created five compliance documentation artefacts: a Record of Processing Activities (ROPA.md) covering four processing activities per GDPR Article 30, a sub-processor register (SUBPROCESSORS.md) cross-referencing all 8 entities from the privacy policy with transfer mechanisms and DPA URLs, a security posture summary (SECURITY.md) with 11 in-place controls and 6 known gaps, a GDPR Article 33 incident response runbook (INCIDENT-RESPONSE.md) with Cyprus OCPDP contact details and phased notification procedures, an EU AI Act Article 4 AI literacy log (AI-LITERACY-LOG.md) documenting the Botpress/OpenAI deployment and Andros's initial briefing, and a deferred-items register (NOTES.md) for out-of-scope findings. Block D produced a complete asset inventory (ASSETS.md) cataloguing all 58 image/video files, 10 vendor libraries, 5 custom CSS/JS files, and 7 external CDN resources with verified licensing categories — flagging Isotope Layout as GPL v3 dead code that must be removed before launch and 8 insurance-themed stock images pending reverse-image-search source confirmation. Block B audited the contact form and added Formspree's `_gotcha` honeypot to both EN and EL forms for spam mitigation, archived the dead `forms/contact.php` to `_archive/`, and restored the BootstrapMade "Designed by" footer credit on all 18 active pages to satisfy the BizLand template free license requirement. Block E produced an SEO baseline snapshot documenting the current state: no 404.html, zero OG/canonical/hreflang tags across all 26 pages, sitemap covering 18 active pages with a placeholder domain, and a robots.txt gap for the new `_archive/` directory.
+
+### What is deferred from Phase 4a
+
+- **Block A (security headers):** Blocked by Issue 6 — cannot set CSP/HSTS headers without production domain and hosting configuration.
+- **Block C (accessibility statement):** Deferred to Phase 4b — requires full accessibility audit first.
+- **Block E remainder (Lighthouse):** Lighthouse CLI available but no Chrome/Chromium on WSL2. Marinos to run manually from Chrome DevTools and add JSON reports to `evidence/`.
+- **NOTES.md remediation queue (pre-launch):** Isotope GPL v3 removal (5-step plan in NOTES.md), imagesloaded dependency check, reverse-image-search 8 stock images, delete 6 unused template pages, update sitemap.xml domain + add `<lastmod>`, add `Disallow: /_archive/` to robots.txt, fix "Consulatants" typo in footer credit.
+- **NOTES.md Phase 5+ items:** Server-side GDPR consent enforcement, marketing-claim phrases in Botpress system prompt, talk-to-human escalation flow enhancement.
+
+### New artefacts
+
+| File | Purpose |
+|------|---------|
+| ROPA.md | Record of Processing Activities (GDPR Article 30) |
+| SUBPROCESSORS.md | Sub-processor register with transfer mechanisms and DPA status |
+| SECURITY.md | Security posture: controls, gaps, access, pending improvements |
+| INCIDENT-RESPONSE.md | Breach notification runbook (GDPR Article 33, Cyprus OCPDP) |
+| AI-LITERACY-LOG.md | AI literacy compliance log (EU AI Act Article 4) |
+| ASSETS.md | Full asset inventory with licensing categories |
+| NOTES.md | Deferred items and out-of-scope findings register |
+
+### Commits — Phase 4a
+
+| SHA | Block | Message |
+|-----|-------|---------|
+| 821f6d8 | F | compliance(phase-4a): create RoPA, sub-processor list, security posture, incident runbook, AI literacy log |
+| 474a074 | D | compliance(phase-4a): create ASSETS.md inventory of all images, fonts, and CDN dependencies |
+| 09f82ff | B | compliance(phase-4a): audit contact form, add honeypot, archive dead PHP, restore BootstrapMade credit |
+| 8d16493 | E | compliance(phase-4a): SEO baseline snapshot and deferred-items update |
+
+### All commits — Phases 1 + 1.5 + 3 + 4a
+
+| # | SHA | Phase | Message |
+|---|-----|-------|---------|
+| 1 | d43c8e3 | 1 | compliance(issue-3): Add OCPDP complaint right to privacy policy (EN + EL) |
+| 2 | 1b6220a | 1 | compliance(issue-4): Name sub-processors in Section 4 + add ip_country to Section 1 (EN + EL) |
+| 3 | 2f28ff5 | 1 | compliance(issue-4): add missing EL bullet and closing para to align with EN |
+| 4 | 45b1d4a | 1 | compliance(issue-10): Skip 4.5s redirect for prefers-reduced-motion users |
+| 5 | c499161 | 1.5 | compliance(issue-2): reclassify bp:* cookies from Strictly Necessary to Preferences |
+| 6 | e024005 | 1.5 | compliance(issue-1): gate Botpress loading behind CMP preferences consent |
+| 7 | a78eee0 | 1.5 | compliance(issue-1): remove Botpress script tags from all HTML pages |
+| 8 | 9a85510 | 1.5 | compliance(issue-1): fix timing race between consent-gated Botpress load and inline UI handlers |
+| 9 | d55c3e3 | 1.5 | compliance(issue-1): remove webchat:ready dependency to fix accept-then-show race |
+| 10 | 88ee9ae | 1.5 | compliance(issue-1): chain Botpress scripts to fix race between inject and init |
+| 11 | b9b59a1 | 3 | compliance(phase-3): add OpenAI sub-processor and chatbot retention to privacy policy |
+| 12 | d6b2d2d | 3 | compliance(phase-3): document dashboard audit findings in EVIDENCE.md and HANDOFF.md |
+| 13 | 3953854 | 3 | compliance(phase-3): fix commit table count in HANDOFF.md |
+| 14 | 821f6d8 | 4a | compliance(phase-4a): create RoPA, sub-processor list, security posture, incident runbook, AI literacy log |
+| 15 | 474a074 | 4a | compliance(phase-4a): create ASSETS.md inventory of all images, fonts, and CDN dependencies |
+| 16 | 09f82ff | 4a | compliance(phase-4a): audit contact form, add honeypot, archive dead PHP, restore BootstrapMade credit |
+| 17 | 8d16493 | 4a | compliance(phase-4a): SEO baseline snapshot and deferred-items update |
+
 ## Evidence
 
-Full verification records with grep output, diffs, legal citations, side-effect checks, browser test results, and dashboard audit findings for all phases: [EVIDENCE.md](EVIDENCE.md)
+Full verification records with grep output, diffs, legal citations, side-effect checks, browser test results, dashboard audit findings, and Phase 4a integration checks for all phases: [EVIDENCE.md](EVIDENCE.md)
 
 ## Sign-off
 
-- [ ] **Marinos Antoniou** — Phase 1 + Phase 1.5 + Phase 3 reviewed and approved
+- [ ] **Marinos Antoniou** — Phase 1 + Phase 1.5 + Phase 3 + Phase 4a reviewed and approved
