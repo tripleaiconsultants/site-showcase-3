@@ -65,6 +65,10 @@ They are not linked from navigation, not used by visitors, but are included in t
 
 After deleting the 6 unused template pages, the only gap would be the 2 index.html pages. Evaluate whether those should be in the sitemap or not (they are splash/redirect pages with no SEO content).
 
+### robots.txt — add `_archive/` Disallow
+
+`_archive/` was created during Phase 4a (Block B) to hold archived dead code (contact.php). robots.txt currently blocks `/forms/` and `/consent-worker/` but not `/_archive/`. Add `Disallow: /_archive/` before launch.
+
 ### Sitemap domain placeholder
 
 `sitemap.xml` and `robots.txt` use `www.eacinsurance.com` as the domain. This is a placeholder — the production domain has not been decided yet. Same blocker as Phase 2 Issue 6 (consent worker CORS lockdown). Both must be updated when the production domain is configured.
@@ -85,6 +89,10 @@ The contact form GDPR consent checkbox uses HTML `required` attribute only (clie
 ### Marketing-claim phrases in Botpress system prompt
 
 Flagged during Phase 3 dashboard audit: the Botpress system prompt contains phrases like "Free risk analysis," "Best market prices," "Same-day coverage available." These should be reviewed under the Cyprus Insurance Distribution Law for compliance with advertising regulations. Phase 4 remainder or Phase 5 item.
+
+### Cosmetic fixes before launch
+
+- **"Consulatants" typo:** The TripleAI credit line in all 18 active page footers reads "TripleAI Consulatants" — should be "TripleAI Consultants". One `replace_all` sed across all files.
 
 ### Talk-to-human escalation flow
 

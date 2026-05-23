@@ -649,4 +649,126 @@ $ grep -l 'Designed by.*BootstrapMade' --include="*.html" -r . | wc -l
 24 ✓
 ```
 
-**Observation:** The TripleAI name is spelled "Consulatants" (typo for "Consultants") across all 18 pages. Pre-existing — not in scope for this block.
+**Observation:** The TripleAI name is spelled "Consulatants" (typo for "Consultants") across all 18 pages. Pre-existing — not in scope for this block. Added to NOTES.md "Cosmetic fixes before launch."
+
+## Block E — SEO baseline snapshot
+
+Snapshot date: 2026-05-23. This is a read-only audit — no files are edited (except NOTES.md for deferred items). All findings documented for Phase 4b or Phase 5 follow-up.
+
+### 404.html
+
+**Status: MISSING.** No custom 404 page exists. GitHub Pages will serve its default 404 for any broken URL. A custom 404.html with navigation back to the site is a pre-launch improvement.
+
+### sitemap.xml audit
+
+**File:** sitemap.xml (23 lines, 18 URLs)
+
+**Domain:** `www.eacinsurance.com` — placeholder. Must be updated when production domain is decided (same blocker as robots.txt and consent worker CORS). Already documented in NOTES.md.
+
+**Pages listed (18):**
+
+| # | URL | Priority | Status |
+|---|-----|----------|--------|
+| 1 | main.html | 1.0 | Active ✓ |
+| 2 | motor.html | 0.9 | Active ✓ |
+| 3 | health.html | 0.9 | Active ✓ |
+| 4 | home.html | 0.9 | Active ✓ |
+| 5 | business.html | 0.9 | Active ✓ |
+| 6 | privacy-policy.html | 0.3 | Active ✓ |
+| 7 | cookie-policy.html | 0.3 | Active ✓ |
+| 8 | disclosures.html | 0.3 | Active ✓ |
+| 9 | terms.html | 0.3 | Active ✓ |
+| 10–18 | EL/ mirrors of above | Same | Active ✓ |
+
+**Pages NOT listed (8):**
+
+| Page | Reason not listed | Action |
+|------|-------------------|--------|
+| index.html | Splash/redirect — no SEO content | Intentional exclusion — OK |
+| EL/index.html | Splash/redirect — no SEO content | Intentional exclusion — OK |
+| portfolio-details.html | Unused BizLand template page | Delete before launch (NOTES.md) |
+| EL/portfolio-details.html | Unused BizLand template page | Delete before launch (NOTES.md) |
+| service-details.html | Unused BizLand template page | Delete before launch (NOTES.md) |
+| EL/service-details.html | Unused BizLand template page | Delete before launch (NOTES.md) |
+| starter-page.html | Unused BizLand template page | Delete before launch (NOTES.md) |
+| EL/starter-page.html | Unused BizLand template page | Delete before launch (NOTES.md) |
+
+**Missing attributes:** No `<lastmod>` or `<changefreq>` on any entry. Recommended to add `<lastmod>` before launch.
+
+### robots.txt audit
+
+**File:** robots.txt (6 lines)
+
+```
+User-agent: *
+Allow: /
+Disallow: /forms/
+Disallow: /consent-worker/
+Sitemap: https://www.eacinsurance.com/sitemap.xml
+```
+
+**Findings:**
+- Domain placeholder matches sitemap — consistent ✓
+- `/forms/` blocked — correct (contains dead newsletter.php + Readme.txt) ✓
+- `/consent-worker/` blocked — correct (Cloudflare Worker config, not public) ✓
+- **Gap: `/_archive/` not blocked** — created in Block B. Should add `Disallow: /_archive/` before launch. Added to NOTES.md.
+
+### Open Graph (og:) tag audit
+
+**Result: Zero OG tags across all 26 pages.**
+
+| Page | og:title | og:description | og:image | og:url | og:type |
+|------|----------|----------------|----------|--------|---------|
+| main.html | — | — | — | — | — |
+| motor.html | — | — | — | — | — |
+| health.html | — | — | — | — | — |
+| home.html | — | — | — | — | — |
+| business.html | — | — | — | — | — |
+| privacy-policy.html | — | — | — | — | — |
+| cookie-policy.html | — | — | — | — | — |
+| disclosures.html | — | — | — | — | — |
+| terms.html | — | — | — | — | — |
+| index.html | — | — | — | — | — |
+| portfolio-details.html | — | — | — | — | — |
+| service-details.html | — | — | — | — | — |
+| starter-page.html | — | — | — | — | — |
+| EL/* (13 pages) | — | — | — | — | — |
+
+**Impact:** Social media shares (Facebook, LinkedIn, WhatsApp) will show no preview image or custom description. Not a compliance issue — pure SEO/marketing improvement for Phase 5.
+
+### Additional SEO signals audited
+
+**Meta descriptions:**
+- Present on 24/26 pages ✓
+- Missing on index.html and EL/index.html (splash/redirect pages — acceptable, these are not indexed)
+
+**Title tags:**
+- Present on all 26 pages ✓
+- 6 unused template pages still show "BizLand Bootstrap Template" titles — will be deleted (NOTES.md)
+- EL service pages (motor, health, home, business) share the same generic title as EL/main.html — not ideal for SEO but not a compliance issue
+
+**Canonical tags (`rel="canonical"`):**
+- Zero across all 26 pages
+- Recommended for bilingual site to prevent duplicate content penalties. Phase 5 improvement.
+
+**hreflang tags:**
+- Zero across all 26 pages
+- Critical for bilingual SEO: search engines cannot determine EN↔EL page relationships without hreflang. Phase 5 improvement, but high priority.
+
+**html `lang` attribute:**
+- EN pages: all `lang="en"` ✓
+- EL active pages: all `lang="el"` ✓
+- 3 unused EL template pages (portfolio-details, service-details, starter-page): incorrectly `lang="en"` — will be deleted (NOTES.md)
+
+### Lighthouse baseline
+
+**Attempted:** Lighthouse CLI v12.8.2 available via npx. Node v20.20.0 installed.
+
+**Result: Cannot run.** No Chrome or Chromium browser found on WSL2 environment. Lighthouse CLI requires a Chrome instance for auditing.
+
+```
+$ which google-chrome chromium-browser chromium
+NO CHROME FOUND
+```
+
+**Action required:** Run Lighthouse manually from Chrome DevTools (Audits tab) on main.html and one EL page. Save JSON reports to `evidence/lighthouse-baseline-main.json` and `evidence/lighthouse-baseline-el-main.json`. Marinos to run manually and provide scores.
