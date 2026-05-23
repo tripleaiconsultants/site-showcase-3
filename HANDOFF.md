@@ -69,6 +69,7 @@ Issues 1, 2, 3, 4, 7, 8, and 10 are now closed. The remaining issues require ext
 | SHA | Message |
 |-----|---------|
 | b9b59a1 | compliance(phase-3): add OpenAI sub-processor and chatbot retention to privacy policy |
+| d6b2d2d | compliance(phase-3): document dashboard audit findings in EVIDENCE.md and HANDOFF.md |
 
 ### All commits — Phases 1 + 1.5 + 3
 
@@ -85,6 +86,7 @@ Issues 1, 2, 3, 4, 7, 8, and 10 are now closed. The remaining issues require ext
 | 9 | d55c3e3 | 1.5 | compliance(issue-1): remove webchat:ready dependency to fix accept-then-show race |
 | 10 | 88ee9ae | 1.5 | compliance(issue-1): chain Botpress scripts to fix race between inject and init |
 | 11 | b9b59a1 | 3 | compliance(phase-3): add OpenAI sub-processor and chatbot retention to privacy policy |
+| 12 | d6b2d2d | 3 | compliance(phase-3): document dashboard audit findings in EVIDENCE.md and HANDOFF.md |
 
 ## Evidence
 
