@@ -468,3 +468,49 @@ $ grep -n "24 months\|24 μήνες" privacy-policy.html EL/privacy-policy.html 
 
 $ git diff --stat: 2 files changed, 6 insertions(+)
 ```
+
+---
+
+# Phase 4a — Hardening Sweep (Blocks B, D, F, E-baseline)
+
+## Block F — Documentation artefacts
+
+### Files created
+
+| File | Lines | Purpose |
+|------|------:|---------|
+| ROPA.md | ~70 | Record of Processing Activities per GDPR Article 30 |
+| SUBPROCESSORS.md | ~45 | Sub-processor list with transfer mechanisms and DPA URLs/status |
+| SECURITY.md | ~60 | Security posture summary with in-place controls and known gaps |
+| INCIDENT-RESPONSE.md | ~75 | GDPR Article 33 breach notification runbook for Cyprus OCPDP |
+| AI-LITERACY-LOG.md | ~55 | EU AI Act Article 4 compliance log |
+| NOTES.md | ~90 | Deferred items and out-of-scope findings for Phase 4 remainder / Phase 5+ |
+
+### Cross-reference verification
+
+```
+$ ls -la ROPA.md SUBPROCESSORS.md SECURITY.md INCIDENT-RESPONSE.md AI-LITERACY-LOG.md NOTES.md
+All 6 files exist ✓
+
+$ grep -c 'GitHub\|Formspree\|Microsoft\|Botpress\|OpenAI\|Make\|Google\|Cloudflare' SUBPROCESSORS.md
+16 — all 8 named sub-processors from privacy-policy.html Section 4 present ✓
+
+$ grep -c '## Processing activity' ROPA.md
+4 — covers: (1) contact form, (2) chatbot/Botpress, (3) consent logging, (4) marketing ✓
+Cross-check with privacy-policy.html Sections 1–2: all disclosed processing purposes covered ✓
+
+$ grep 'commissioner@dataprotection.gov.cy' INCIDENT-RESPONSE.md
+1 match — consistent with privacy-policy.html Section 6 ✓
+
+$ grep -ri 'secret' SECURITY.md INCIDENT-RESPONSE.md AI-LITERACY-LOG.md ROPA.md SUBPROCESSORS.md | grep -iv 'shared.secret\|shared secret'
+1 match: "sensitive configuration" in INCIDENT-RESPONSE.md breach example — no actual secret values ✓
+Shared-secret value NOT logged anywhere ✓
+```
+
+### Content accuracy notes
+
+- ROPA Processing activity 4 (marketing): marked TBD — confirm with Andros whether marketing communications are currently active and via what platform
+- SUBPROCESSORS.md DPA status: all marked "TBD — confirm with Andros" — DPA signing status not verified
+- SECURITY.md 2FA status: marked "TBD — confirm with Andros" for both Andros's and Marinos's accounts
+- AI-LITERACY-LOG.md briefing date: 2026-05-23 (today, verbal walkthrough)
+- All unverified facts marked TBD rather than asserted — per compliance rules
