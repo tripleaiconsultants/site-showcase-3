@@ -556,3 +556,97 @@ $ diff <(find assets/img/ -type f | sed 's|.*/assets/|assets/|' | sort) \
 ### CDN resources documented
 
 Google Fonts (3 families, OFL/Apache 2.0), Font Awesome Free (CC BY 4.0), Google Maps Embed (Google ToS), Botpress Webchat (Botpress ToS).
+
+## Block B — Contact form audit + BootstrapMade footer credit
+
+### Contact form GDPR checkbox
+
+**Status:** Present in both EN (main.html:753) and EL (EL/main.html:784) contact forms.
+
+- `<input type="checkbox" name="gdpr-consent" required>` — HTML `required` attribute enforced
+- Links to `privacy-policy.html` (EN) / `privacy-policy.html` (EL, relative to EL/)
+- GDPR Article 13 disclosure satisfied: user sees link to privacy policy before submitting
+
+**Limitation (documented, not fixed — Phase 5+):** Consent is client-side only. A user bypassing JavaScript (e.g. direct POST to `https://formspree.io/f/xlgevykp` via curl) could submit without consent. Formspree free tier has no server-side consent validation. Documented in NOTES.md under Phase 5+ improvements.
+
+### Formspree `_gotcha` honeypot added
+
+**Files changed:** main.html, EL/main.html
+
+Added Formspree's recommended hidden honeypot field to both contact forms:
+```html
+<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+       style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+```
+
+- `name="_gotcha"` — Formspree silently drops submissions where this field is non-empty
+- `tabindex="-1"` — not keyboard-focusable
+- `aria-hidden="true"` — not announced by screen readers
+- CSS positions the field off-screen to hide from visual users
+- Bots auto-fill all visible fields, triggering the honeypot
+
+**Verification:**
+```
+$ grep -rn '_gotcha' --include="*.html" .
+main.html:722: ✓
+EL/main.html:751: ✓
+```
+
+### Dead contact.php archived
+
+**File moved:** `forms/contact.php` → `_archive/contact.php`
+
+**Rationale:** Both EN and EL contact forms POST to `https://formspree.io/f/xlgevykp`, not to `forms/contact.php`. The PHP file contains a `mail()` handler that is never called. Archiving rather than deleting preserves it for reference.
+
+**Verification:**
+```
+$ grep -rn 'formspree.io' main.html EL/main.html
+main.html:718: action="https://formspree.io/f/xlgevykp" ✓
+EL/main.html:747: action="https://formspree.io/f/xlgevykp" ✓
+
+$ ls _archive/contact.php — exists ✓
+$ ls forms/contact.php — does not exist ✓
+```
+
+**Remaining in forms/:** `Readme.txt`, `newsletter.php` — not in scope for this block.
+
+### BootstrapMade footer credit restored
+
+**License requirement:** BootstrapMade BizLand template free license requires visible "Designed by BootstrapMade" credit in the footer of all pages using the template.
+
+**Finding:** Credit was missing from all 18 active pages (9 EN + 9 EL). The 6 unused template pages (portfolio-details, service-details, starter-page × EN + EL) already had the credit. The 2 index.html splash pages have no footer — not applicable.
+
+**Fix applied to 18 pages:**
+- 10 main/service pages (multi-line credits div): added licensing comment + "Designed by BootstrapMade." before existing TripleAI credit
+- 8 legal pages (single-line credits div): same pattern
+
+**Format (EN main pages):**
+```html
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Website by <a href="#">TripleAI Consulatants</a>
+```
+
+**Format (EL main pages):**
+```html
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Ιστοσελίδα από <a href="#">TripleAI Consulatants</a>
+```
+
+**Format (legal pages, EN and EL):**
+```html
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Website by <a href="#">TripleAI Consulatants</a></div>
+```
+
+**Verification:**
+```
+$ grep -c 'Designed by.*BootstrapMade' --include="*.html" -r .
+24 total pages (18 active + 6 template) ✓
+index.html: 0 (no footer) ✓
+EL/index.html: 0 (no footer) ✓
+
+$ grep -l 'Designed by.*BootstrapMade' --include="*.html" -r . | wc -l
+24 ✓
+```
+
+**Observation:** The TripleAI name is spelled "Consulatants" (typo for "Consultants") across all 18 pages. Pre-existing — not in scope for this block.
