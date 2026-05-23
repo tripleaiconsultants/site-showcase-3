@@ -514,3 +514,45 @@ Shared-secret value NOT logged anywhere ✓
 - SECURITY.md 2FA status: marked "TBD — confirm with Andros" for both Andros's and Marinos's accounts
 - AI-LITERACY-LOG.md briefing date: 2026-05-23 (today, verbal walkthrough)
 - All unverified facts marked TBD rather than asserted — per compliance rules
+
+## Block D — Asset inventory (ASSETS.md)
+
+### File created
+
+ASSETS.md — 134 lines, 8 sections covering all repo assets.
+
+### Asset coverage verification
+
+```
+$ wc -l ASSETS.md
+134
+
+$ grep -c 'assets/img/' ASSETS.md
+58 — matches 57 image files + 1 video_poster.jpg (derived from MotionArray video) ✓
+
+$ diff <(find assets/img/ -type f | sed 's|.*/assets/|assets/|' | sort) \
+       <(grep -oP 'assets/img/[^ |]+' ASSETS.md | sort)
+(no output) — every filesystem image file has a corresponding ASSETS.md entry ✓
+```
+
+### Licensing categories applied
+
+| Category | Count | License | Attribution |
+|----------|------:|---------|-------------|
+| Andros-provided (photos, logos, icons) | 14 | Owned by data controller | None required |
+| BootstrapMade BizLand template imagery | 34 | BootstrapMade free license | Yes — footer credit (missing, restored in Block B) |
+| MotionArray video + poster | 2 | MotionArray free-tier, commercial use permitted | None required |
+| Insurance stock images (source undocumented) | 8 | TBD — pending reverse-image-search | TBD |
+| **Total assets/img/ entries** | **58** | | |
+
+### Vendor library licenses
+
+| Library | License | Flag |
+|---------|---------|------|
+| Bootstrap, Bootstrap Icons, AOS, GLightbox, Swiper, PureCounter, Waypoints, imagesloaded | MIT (or MIT + SIL OFL for fonts) | None |
+| Isotope Layout | **GPL v3** | **Dead code — flagged for removal in NOTES.md** |
+| php-email-form (validate.js) | BootstrapMade | Modified to support Formspree |
+
+### CDN resources documented
+
+Google Fonts (3 families, OFL/Apache 2.0), Font Awesome Free (CC BY 4.0), Google Maps Embed (Google ToS), Botpress Webchat (Botpress ToS).
