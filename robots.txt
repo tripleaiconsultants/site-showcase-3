@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /forms/
 Disallow: /consent-worker/
+Disallow: /_archive/
 
 Sitemap: https://www.eacinsurance.com/sitemap.xml
