@@ -811,3 +811,120 @@ EL/index.html: 0 (no footer) ✓
 $ git log --oneline | wc -l
 30 total commits (13 pre-compliance + 17 compliance) ✓
 ```
+
+---
+
+# Phase 4 Remainder — Cleanup Pass
+
+## Task 1 — Remove Isotope GPL v3 dead code and imagesloaded dependency
+
+**Commit:** 89d7ae5
+
+**What was removed:**
+1. `assets/vendor/isotope-layout/` (2 files, 126K) — GPL v3 licensed, zero DOM elements triggered it
+2. `assets/vendor/imagesloaded/` (1 file, 5.5K) — MIT, sole consumer was Isotope init block
+3. 48 `<script>` tags (2 per page × 24 pages) from all HTML files except index.html and EL/index.html
+4. Isotope init block from `assets/js/main.js` (lines 232–263, 32 lines)
+5. Portfolio-filters CSS from `assets/css/main.css` (lines 2341–2381, 41 lines, 6 rule blocks)
+
+**Verification performed:**
+```
+$ grep -rn 'isotope' --include="*.html" --include="*.js" --include="*.css" .
+(no output) — 0 references ✓
+
+$ grep -rn 'imagesloaded|imagesLoaded' --include="*.html" --include="*.js" . | grep -v 'swiper-bundle'
+(no output) — 0 references outside Swiper internals ✓
+
+$ ls assets/vendor/isotope-layout/ 2>&1
+ls: cannot access 'assets/vendor/isotope-layout/': No such file or directory ✓
+
+$ ls assets/vendor/imagesloaded/ 2>&1
+ls: cannot access 'assets/vendor/imagesloaded/': No such file or directory ✓
+
+$ git diff --stat
+29 files changed, 3710 deletions(-)
+```
+
+**Note:** `swiper-bundle.min.js` contains the string "imagesLoaded" internally as a Swiper feature name — this is Swiper's own lazy-loading concept, not our imagesloaded library dependency.
+
+## Task 2 — Vendor library audit (all 8 remaining libraries active)
+
+**No commit — documentation-only audit.**
+
+All 8 surviving vendor libraries confirmed active with triggers in main.js or HTML:
+
+| Library | Trigger | Location |
+|---------|---------|----------|
+| AOS | `AOS.init({...})` | main.js:166 |
+| Bootstrap | CSS `<link>` + JS `<script>` | All 20 HTML pages |
+| Bootstrap Icons | CSS `<link>` | All 20 HTML pages |
+| GLightbox | `GLightbox({selector:'.glightbox'})` | main.js:187 |
+| PureCounter | `new PureCounter()` | main.js:211 |
+| Swiper | `new Swiper(swiperElement, config)` | main.js:225 |
+| Waypoints | `new Waypoint({...})` | main.js:196 |
+| php-email-form | `class="php-email-form"` on contact forms | HTML + validate.js |
+
+**Verification:** `grep` for each library name in main.js and HTML confirmed at least one active call site per library.
+
+## Task 3 — Delete 6 unused BizLand template pages
+
+**Commit:** 970f1ac
+
+**Files deleted:**
+- `portfolio-details.html` / `EL/portfolio-details.html`
+- `service-details.html` / `EL/service-details.html`
+- `starter-page.html` / `EL/starter-page.html`
+
+**Pre-delete safety check:**
+```
+$ grep -rn 'href=.*portfolio-details' --include="*.html" . | grep -v 'portfolio-details.html:'
+(no output) — 0 inbound links ✓
+
+$ grep -rn 'href=.*service-details' --include="*.html" . | grep -v 'service-details.html:'
+(no output) — 0 inbound links ✓
+
+$ grep -rn 'href=.*starter-page' --include="*.html" . | grep -v 'starter-page.html:'
+(no output) — 0 inbound links ✓
+```
+
+**Post-delete verification:**
+```
+$ ls *.html | wc -l → 10
+$ ls EL/*.html | wc -l → 10
+Total: 20 pages (was 26) ✓
+
+$ git diff --stat
+6 files changed, 1661 deletions(-)
+```
+
+## Task 4 — Add /_archive/ Disallow to robots.txt
+
+**Commit:** 65baf32
+
+**Change:** Added `Disallow: /_archive/` after existing `Disallow: /consent-worker/` line.
+
+**Verification:**
+```
+$ grep '_archive' robots.txt
+Disallow: /_archive/ ✓
+```
+
+**robots.txt now blocks:** `/forms/`, `/consent-worker/`, `/_archive/`
+
+## Task 5 — Fix Consulatants → Consultants typo in footer credits
+
+**Commit:** cb72ac4
+
+**Change:** `perl -i -pe 's/Consulatants/Consultants/g' *.html EL/*.html` — 18 files changed (all active pages with footer credits; 2 splash pages have no footer).
+
+**Verification:**
+```
+$ grep -rn 'Consulatants' --include="*.html" . | wc -l
+0 — zero typos remaining ✓
+
+$ grep -rn 'Consultants' --include="*.html" . | wc -l
+23 — 18 footer credits + 5 other mentions ✓
+
+$ git diff --stat
+18 files changed, 18 insertions(+), 18 deletions(-)
+```

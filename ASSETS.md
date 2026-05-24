@@ -1,7 +1,7 @@
 # Asset Inventory — E.A.C. Insurance Website
 
-**Last reviewed:** 2026-05-23
-**Next review:** 2027-05-23
+**Last reviewed:** 2026-05-24
+**Next review:** 2027-05-24
 
 ---
 
@@ -26,7 +26,7 @@
 
 ## BootstrapMade BizLand template imagery
 
-Source: BootstrapMade BizLand template. License: BootstrapMade free license — requires "Designed by BootstrapMade" credit in footer. **Credit currently missing from site footer — will be restored in Block B.**
+Source: BootstrapMade BizLand template. License: BootstrapMade free license — requires "Designed by BootstrapMade" credit in footer. Credit restored in Phase 4a (Block B).
 
 | Path | Type | Size | License | Attribution Required | Notes |
 |------|------|------|---------|---------------------|-------|
@@ -89,20 +89,20 @@ Source: Likely Pexels/Unsplash/Pixabay (free-license stock sites) but exact sour
 
 ---
 
-## Vendor libraries (assets/vendor/)
+## Vendor libraries (assets/vendor/) — 8 libraries
 
-| Library | Path | License | Version | Notes |
+| Library | Path | License | Trigger | Notes |
 |---------|------|---------|---------|-------|
-| Bootstrap | assets/vendor/bootstrap/ (28 CSS + 12 JS files) | MIT | 5.x | CSS framework |
-| Bootstrap Icons | assets/vendor/bootstrap-icons/ (4 files + 2 woff fonts) | MIT (code), SIL OFL 1.1 (fonts) | — | Icon font |
-| AOS (Animate On Scroll) | assets/vendor/aos/ (4 files) | MIT | — | Scroll animation library |
-| GLightbox | assets/vendor/glightbox/ (2 CSS + 2 JS) | MIT | — | Lightbox / image gallery |
-| Swiper | assets/vendor/swiper/ (2 CSS + 1 JS + 1 map) | MIT | — | Touch slider / carousel |
-| imagesloaded | assets/vendor/imagesloaded/ (1 JS) | MIT | — | Image load detection. Currently only used inside Isotope init block in main.js — likely dead code. See NOTES.md. |
-| Isotope Layout | assets/vendor/isotope-layout/ (2 JS) | **GPL v3** | — | **Dead code — GPL v3 — remove before launch.** Loaded on all 26 pages but zero DOM elements trigger it. See NOTES.md for full analysis. |
-| PureCounter | assets/vendor/purecounter/ (1 JS + 1 map) | MIT | — | Counter animation (stats section) |
-| Waypoints | assets/vendor/waypoints/ (1 JS) | MIT | — | Scroll position detection |
-| php-email-form (validate.js) | assets/vendor/php-email-form/ (1 JS) | BootstrapMade | v3.11 | Form submission handler. Modified to support Formspree. |
+| AOS (Animate On Scroll) | assets/vendor/aos/ (4 files) | MIT | `AOS.init()` — main.js:166 | Scroll animation library |
+| Bootstrap | assets/vendor/bootstrap/ (28 CSS + 12 JS files) | MIT | CSS `<link>` + JS `<script>` in all 20 pages | CSS framework |
+| Bootstrap Icons | assets/vendor/bootstrap-icons/ (4 files + 2 woff fonts) | MIT (code), SIL OFL 1.1 (fonts) | CSS `<link>` in all 20 pages | Icon font |
+| GLightbox | assets/vendor/glightbox/ (2 CSS + 2 JS) | MIT | `GLightbox({selector:'.glightbox'})` — main.js:187 | Lightbox / image gallery |
+| PureCounter | assets/vendor/purecounter/ (1 JS + 1 map) | MIT | `new PureCounter()` — main.js:211 | Counter animation (stats section) |
+| Swiper | assets/vendor/swiper/ (2 CSS + 1 JS + 1 map) | MIT | `new Swiper()` — main.js:225 | Touch slider / carousel |
+| Waypoints | assets/vendor/waypoints/ (1 JS) | MIT | `new Waypoint()` — main.js:196 | Scroll position detection |
+| php-email-form (validate.js) | assets/vendor/php-email-form/ (1 JS) | BootstrapMade | `class="php-email-form"` on contact forms | Form submission handler. Modified to support Formspree. |
+
+*Isotope Layout (GPL v3) and imagesloaded (MIT) removed in Phase 4 remainder — both were dead code with zero DOM triggers.*
 
 ## Custom CSS and JS (assets/css/, assets/js/)
 
@@ -110,7 +110,7 @@ Source: Likely Pexels/Unsplash/Pixabay (free-license stock sites) but exact sour
 |------|------|---------|-------|
 | assets/css/main.css | CSS | Owned by EAC / TripleAI Consultants | Primary stylesheet (based on BizLand template, customised) |
 | assets/css/sub.css | CSS | Owned by EAC / TripleAI Consultants | Supplementary stylesheet for legal/sub-pages |
-| assets/js/main.js | JS | Owned by EAC / TripleAI Consultants | Primary JS (based on BizLand template, customised). Contains dead Isotope init code at L232–260. |
+| assets/js/main.js | JS | Owned by EAC / TripleAI Consultants | Primary JS (based on BizLand template, customised) |
 | assets/js/cmp.js | JS | Owned by EAC / TripleAI Consultants | Cookie Management Platform — custom-built |
 | assets/js/theme-init.js | JS | Owned by EAC / TripleAI Consultants | Dark mode initialisation (prevents flash) |
 
