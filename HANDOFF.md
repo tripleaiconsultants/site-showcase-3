@@ -1,4 +1,4 @@
-# HANDOFF.md — Phase 1 + Phase 1.5 + Phase 3 + Phase 4a Compliance Pass Complete
+# HANDOFF.md — Phase 1 + Phase 1.5 + Phase 3 + Phase 4a + Phase 4 Remainder Compliance Pass Complete
 
 ## What was delivered
 
@@ -147,10 +147,71 @@ Phase 4a is a hardening sweep covering documentation, asset management, form sec
 | 16 | 09f82ff | 4a | compliance(phase-4a): audit contact form, add honeypot, archive dead PHP, restore BootstrapMade credit |
 | 17 | 8d16493 | 4a | compliance(phase-4a): SEO baseline snapshot and deferred-items update |
 
+---
+
+## Phase 4 Remainder — Repo Cleanup Pass
+
+### What was delivered
+
+Phase 4 remainder completed the pre-launch cleanup items flagged during Phase 4a. Task 1 removed the Isotope Layout library (GPL v3, dead code with zero DOM triggers) and its sole dependency imagesloaded from all 24 HTML pages, main.js, main.css, and the vendor directory — eliminating GPL v3 distribution exposure (commit 89d7ae5). A vendor audit confirmed all 8 remaining libraries (AOS, Bootstrap, Bootstrap Icons, GLightbox, PureCounter, Swiper, Waypoints, php-email-form) are actively triggered with documented call sites in main.js or HTML. Task 3 deleted 6 unused BizLand template pages (portfolio-details, service-details, starter-page × EN + EL) after verifying zero inbound links from any active page, reducing the site from 26 to 20 pages (commit 970f1ac). Task 4 added `Disallow: /_archive/` to robots.txt to prevent indexing of archived dead code (commit 65baf32). Task 5 fixed the "Consulatants" → "Consultants" typo in all 18 footer credits (commit cb72ac4). EVIDENCE.md, ASSETS.md, and NOTES.md were updated with per-task verification records, trigger locations for surviving vendor libraries, and strikethrough of completed remediation items (commit 65692b2).
+
+### What remains
+
+- **Reverse-image-search 8 stock images:** car_3d.webp, health_3d.webp, house_3d.webp, business_3d.webp, motor-insu.webp, health_insu.webp, home_insu.webp, business_insu.webp — source and license unconfirmed. Marinos doing manually.
+- **Lighthouse baseline:** No Chrome on WSL2. Marinos running manually from Opera/Chrome DevTools.
+- **Terms of Use review:** Content review of terms.html / EL/terms.html deferred.
+- **Phase 4b accessibility:** Accessibility audit and statement.
+- **Marketing-claim phrases:** Botpress system prompt contains "Free risk analysis," "Best market prices," "Same-day coverage available" — review under Cyprus Insurance Distribution Law.
+- **Server-side consent enforcement:** Contact form GDPR checkbox is client-side only (HTML `required`). Phase 5+ improvement.
+- **Sitemap domain placeholder:** sitemap.xml and robots.txt use `www.eacinsurance.com` — update when production domain is decided.
+- **Issue 5 (disclosures placeholders):** Waiting on Andros for 5 regulatory values.
+- **Issue 6 (consent worker CORS):** Waiting on production domain.
+- **Issue 9 (controller/processor agreement):** Separate document workstream.
+
+### Commits — Phase 4 Remainder
+
+| SHA | Message |
+|-----|---------|
+| 89d7ae5 | compliance(phase-4-remainder): remove Isotope GPL v3 dead code and imagesloaded dependency |
+| 970f1ac | compliance(phase-4-remainder): delete 6 unused BizLand template pages |
+| 65baf32 | compliance(phase-4-remainder): add /_archive/ disallow to robots.txt |
+| cb72ac4 | compliance(phase-4-remainder): fix Consulatants → Consultants typo in 18 footer credits |
+| 65692b2 | compliance(phase-4-remainder): update EVIDENCE, ASSETS, NOTES after cleanup pass |
+
+### All commits — Phases 1 + 1.5 + 3 + 4a + 4 Remainder
+
+| # | SHA | Phase | Message |
+|---|-----|-------|---------|
+| 1 | d43c8e3 | 1 | compliance(issue-3): Add OCPDP complaint right to privacy policy (EN + EL) |
+| 2 | 1b6220a | 1 | compliance(issue-4): Name sub-processors in Section 4 + add ip_country to Section 1 (EN + EL) |
+| 3 | 2f28ff5 | 1 | compliance(issue-4): add missing EL bullet and closing para to align with EN |
+| 4 | 45b1d4a | 1 | compliance(issue-10): Skip 4.5s redirect for prefers-reduced-motion users |
+| 5 | c499161 | 1.5 | compliance(issue-2): reclassify bp:* cookies from Strictly Necessary to Preferences |
+| 6 | e024005 | 1.5 | compliance(issue-1): gate Botpress loading behind CMP preferences consent |
+| 7 | a78eee0 | 1.5 | compliance(issue-1): remove Botpress script tags from all HTML pages |
+| 8 | 9a85510 | 1.5 | compliance(issue-1): fix timing race between consent-gated Botpress load and inline UI handlers |
+| 9 | d55c3e3 | 1.5 | compliance(issue-1): remove webchat:ready dependency to fix accept-then-show race |
+| 10 | 88ee9ae | 1.5 | compliance(issue-1): chain Botpress scripts to fix race between inject and init |
+| 11 | b9b59a1 | 3 | compliance(phase-3): add OpenAI sub-processor and chatbot retention to privacy policy |
+| 12 | d6b2d2d | 3 | compliance(phase-3): document dashboard audit findings in EVIDENCE.md and HANDOFF.md |
+| — | 3953854 | 3 | compliance(phase-3): fix commit table count in HANDOFF.md *(meta — table fix)* |
+| 13 | 821f6d8 | 4a | compliance(phase-4a): create RoPA, sub-processor list, security posture, incident runbook, AI literacy log |
+| 14 | 474a074 | 4a | compliance(phase-4a): create ASSETS.md inventory of all images, fonts, and CDN dependencies |
+| 15 | 09f82ff | 4a | compliance(phase-4a): audit contact form, add honeypot, archive dead PHP, restore BootstrapMade credit |
+| 16 | 8d16493 | 4a | compliance(phase-4a): SEO baseline snapshot and deferred-items update |
+| 17 | 04da81b | 4a | compliance(phase-4a): integration check and HANDOFF.md Phase 4a section |
+| 18 | 89d7ae5 | 4-rem | compliance(phase-4-remainder): remove Isotope GPL v3 dead code and imagesloaded dependency |
+| 19 | 970f1ac | 4-rem | compliance(phase-4-remainder): delete 6 unused BizLand template pages |
+| 20 | 65baf32 | 4-rem | compliance(phase-4-remainder): add /_archive/ disallow to robots.txt |
+| 21 | cb72ac4 | 4-rem | compliance(phase-4-remainder): fix Consulatants → Consultants typo in 18 footer credits |
+| 22 | 65692b2 | 4-rem | compliance(phase-4-remainder): update EVIDENCE, ASSETS, NOTES after cleanup pass |
+
+*22 substantive compliance commits + 1 meta table-fix (3953854). HANDOFF.md update commit not listed (self-referential).*
+
 ## Evidence
 
-Full verification records with grep output, diffs, legal citations, side-effect checks, browser test results, dashboard audit findings, and Phase 4a integration checks for all phases: [EVIDENCE.md](EVIDENCE.md)
+Full verification records with grep output, diffs, legal citations, side-effect checks, browser test results, dashboard audit findings, and Phase 4a/4-remainder integration checks for all phases: [EVIDENCE.md](EVIDENCE.md)
 
 ## Sign-off
 
-- [ ] **Marinos Antoniou** — Phase 1 + Phase 1.5 + Phase 3 + Phase 4a reviewed and approved
+- [ ] **Marinos Antoniou** — Phase 1 + Phase 1.5 + Phase 3 + Phase 4a + Phase 4 Remainder reviewed and approved
