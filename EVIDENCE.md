@@ -977,3 +977,38 @@ Designed by BootstrapMade. Εικόνες από Freepik & vectorpocket — Magn
 4 `_insu.webp` images remain pending source confirmation from previous developer:
 - motor-insu.webp (276K), health_insu.webp (409K), home_insu.webp (122K), business_insu.webp (196K)
 - If unverified before launch: replace with properly licensed alternatives (NOTES.md remediation queue)
+
+---
+
+# Children's Data Clause Added (2026-05-31)
+
+**Trigger:** Tier 2 GDPR Article 8 compliance gap identified during compliance brief preparation. Privacy policy did not explicitly state the site is not intended for minors.
+
+## Change
+
+- Added "Children's Data" / "Δεδομένα Ανηλίκων" as Section 9 to privacy-policy.html (EN + EL)
+- Contact Us renumbered from Section 9 to Section 10 in both files
+- Statement clarifies: site intended for adults (18+), no knowing collection from under-14s (Cyprus digital consent age), parent/guardian contact procedure
+- Chatbot non-collection of age-revealing data noted as additional safeguard
+
+## Verification
+
+```
+$ grep -c "Children\|Ανηλίκων" privacy-policy.html EL/privacy-policy.html
+privacy-policy.html:1 ✓
+EL/privacy-policy.html:1 ✓
+
+$ grep -n "h2" privacy-policy.html | tail -3
+153: <h2>9. Children's Data</h2> ✓
+158: <h2>10. Contact Us</h2> ✓
+
+$ grep -n "h2" EL/privacy-policy.html | tail -3
+150: <h2>9. Δεδομένα Ανηλίκων</h2> ✓
+155: <h2>10. Επικοινωνία</h2> ✓
+```
+
+## Compliance impact
+
+- Closes GDPR Article 8 documentation gap (conditions applicable to child's consent in relation to information society services)
+- Cyprus digital consent age: 14 (per national implementation of GDPR Article 8(1))
+- Provides clear procedure for parental contact if minor's data is collected
