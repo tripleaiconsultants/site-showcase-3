@@ -928,3 +928,52 @@ $ grep -rn 'Consultants' --include="*.html" . | wc -l
 $ git diff --stat
 18 files changed, 18 insertions(+), 18 deletions(-)
 ```
+
+---
+
+# Image Licensing Follow-up (2026-05-31)
+
+**Trigger:** Previous developer confirmed source for 4 of 8 unverified `_3d.webp` images. License certificates received as PDFs from Magnific.com (Freepik Company S.L.U.).
+
+## Findings
+
+| Image | Source URL | Author | License |
+|-------|-----------|--------|---------|
+| car_3d.webp | https://www.magnific.com/free-psd/modern-car-isolated_205830887.htm | Freepik | Free commercial + attribution |
+| health_3d.webp | https://www.magnific.com/free-psd/3d-rendering-ui-icon_20546696.htm | Freepik | Free commercial + attribution |
+| house_3d.webp | https://www.magnific.com/free-photo/house-3d-rendering-design_45127176.htm | Freepik | Free commercial + attribution |
+| business_3d.webp | https://www.magnific.com/free-vector/vector-3d-isometric-illustration-interior-office-room_1215811.htm | vectorpocket | Free commercial + attribution |
+
+**Attribution requirement:** Magnific free license requires `<a href="https://www.magnific.com">designed by [Author] - Magnific.com</a>` for web usage, or credit in acknowledgements section. Satisfied by adding footer credit on all 18 active pages.
+
+**Verification:**
+```
+$ ls _archive/licenses/
+magnific-business_3d.pdf  magnific-car_3d.pdf  magnific-health_3d.pdf  magnific-house_3d.pdf
+4 license PDFs stored ✓
+
+$ grep -rn 'Magnific' --include="*.html" . | wc -l
+18 — attribution present on all active pages ✓
+
+$ grep -c 'magnific.com' ASSETS.md
+5 — 4 source URLs + 1 section header ✓
+
+$ git diff --stat (Commit C)
+18 files changed, 18 insertions(+), 18 deletions(-)
+```
+
+**Footer credit format (EN):**
+```
+Designed by BootstrapMade. Imagery by Freepik & vectorpocket — Magnific.com. Website by TripleAI Consultants
+```
+
+**Footer credit format (EL main pages):**
+```
+Designed by BootstrapMade. Εικόνες από Freepik & vectorpocket — Magnific.com. Ιστοσελίδα από TripleAI Consultants
+```
+
+## Outstanding
+
+4 `_insu.webp` images remain pending source confirmation from previous developer:
+- motor-insu.webp (276K), health_insu.webp (409K), home_insu.webp (122K), business_insu.webp (196K)
+- If unverified before launch: replace with properly licensed alternatives (NOTES.md remediation queue)
