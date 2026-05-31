@@ -72,16 +72,23 @@ Source: BootstrapMade BizLand template. License: BootstrapMade free license — 
 | assets/img/video_new.mp4 | Video | 8.7M | MotionArray free-tier license | No | Insurance concept, toy cars & agent. Downloaded under free-account license. Commercial use permitted per MotionArray free-tier terms. |
 | assets/img/video_poster.jpg | Image | 85K | Derived from MotionArray video | No | Poster frame extracted from video_new.mp4 |
 
-## Insurance-themed stock images — source not documented
+## Magnific (Freepik) licensed imagery — attribution in footer
 
-Source: Likely Pexels/Unsplash/Pixabay (free-license stock sites) but exact source not documented at time of download. **Action required before launch:** reverse-image-search via TinEye or Google Lens to confirm source and verify license. See NOTES.md.
+Source: Magnific.com (Freepik Company S.L.U.). License: "Free for commercial use WITH ATTRIBUTION." Attribution satisfied via footer credit on all 18 active pages. License certificates stored in `_archive/licenses/`.
 
 | Path | Type | Size | License | Attribution Required | Notes |
 |------|------|------|---------|---------------------|-------|
-| assets/img/car_3d.webp | Illustration | 166K | TBD — pending source confirmation | TBD | Motor insurance service image |
-| assets/img/health_3d.webp | Illustration | 63K | TBD — pending source confirmation | TBD | Health insurance service image |
-| assets/img/house_3d.webp | Illustration | 130K | TBD — pending source confirmation | TBD | Home insurance service image |
-| assets/img/business_3d.webp | Illustration | 56K | TBD — pending source confirmation | TBD | Business insurance service image |
+| assets/img/car_3d.webp | Illustration | 166K | Magnific free (with attribution) | Yes (footer credit) | Motor insurance service image. Author: Freepik. URL: https://www.magnific.com/free-psd/modern-car-isolated_205830887.htm. License PDF: _archive/licenses/magnific-car_3d.pdf |
+| assets/img/health_3d.webp | Illustration | 63K | Magnific free (with attribution) | Yes (footer credit) | Health insurance service image. Author: Freepik. URL: https://www.magnific.com/free-psd/3d-rendering-ui-icon_20546696.htm. License PDF: _archive/licenses/magnific-health_3d.pdf |
+| assets/img/house_3d.webp | Illustration | 130K | Magnific free (with attribution) | Yes (footer credit) | Home insurance service image. Author: Freepik. URL: https://www.magnific.com/free-photo/house-3d-rendering-design_45127176.htm. License PDF: _archive/licenses/magnific-house_3d.pdf |
+| assets/img/business_3d.webp | Illustration | 56K | Magnific free (with attribution) | Yes (footer credit) | Business insurance service image. Author: vectorpocket. URL: https://www.magnific.com/free-vector/vector-3d-isometric-illustration-interior-office-room_1215811.htm. License PDF: _archive/licenses/magnific-business_3d.pdf |
+
+## Insurance-themed stock images — pending source confirmation
+
+Source undocumented at time of download. **Action required before launch:** confirm source with previous developer or reverse-image-search via TinEye/Google Lens. If unverified, replace with properly licensed alternatives. See NOTES.md.
+
+| Path | Type | Size | License | Attribution Required | Notes |
+|------|------|------|---------|---------------------|-------|
 | assets/img/motor-insu.webp | Photo | 276K | TBD — pending source confirmation | TBD | Motor insurance page hero |
 | assets/img/health_insu.webp | Photo | 409K | TBD — pending source confirmation | TBD | Health insurance page hero |
 | assets/img/home_insu.webp | Photo | 122K | TBD — pending source confirmation | TBD | Home insurance page hero |
