@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - E.A.C. Insurance Agencies &amp; Consultants Ltd</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap');
+
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #555;
+            --gold: #BC9042;
+            --gold-light: #D4A855;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a1929;
+                --text: #f0ece4;
+                --text-secondary: #a0a8b4;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { height: 100%; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .error-page {
+            text-align: center;
+            max-width: 560px;
+        }
+
+        .error-page img {
+            width: clamp(60px, 12vmin, 100px);
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        .error-code {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(64px, 15vw, 120px);
+            line-height: 1;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .error-rule {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 1.2rem auto;
+        }
+
+        .error-message {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(20px, 4vw, 28px);
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .error-detail {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .error-link {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--bg);
+            background: var(--gold);
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .error-link:hover {
+            background: var(--gold-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <img src="assets/img/logo_gray.png" alt="E.A.C. Insurance Agencies &amp; Consultants Ltd">
+        <div class="error-code">404</div>
+        <div class="error-rule"></div>
+        <h1 class="error-message">Page not found</h1>
+        <p class="error-detail">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+        <a href="main.html" class="error-link">Back to Home</a>
+    </div>
+</body>
+</html>
