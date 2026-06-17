@@ -239,6 +239,62 @@
   });
 
   /**
+   * Challenge form — AJAX submit with inline status messages
+   */
+  (function () {
+    var form = document.getElementById('challenge-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var phone = document.getElementById('challenge-phone').value.trim();
+      var email = document.getElementById('challenge-email').value.trim();
+      var errorEl = document.getElementById('challenge-contact-error');
+      var loading = form.querySelector('.loading');
+      var errorMsg = form.querySelector('.error-message');
+      var sentMsg = form.querySelector('.sent-message');
+
+      if (!phone && !email) {
+        if (errorEl) errorEl.style.display = 'block';
+        return;
+      }
+      if (errorEl) errorEl.style.display = 'none';
+
+      if (loading) loading.classList.add('d-block');
+      if (sentMsg) sentMsg.classList.remove('d-block');
+      if (errorMsg) errorMsg.classList.remove('d-block');
+
+      var action = form.getAttribute('action');
+      fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+          return response.json();
+        })
+        .then(function (data) {
+          if (loading) loading.classList.remove('d-block');
+          if (data.ok) {
+            if (sentMsg) sentMsg.classList.add('d-block');
+            form.reset();
+          } else {
+            throw new Error(data.error || 'Submission failed');
+          }
+        })
+        .catch(function (err) {
+          if (loading) loading.classList.remove('d-block');
+          if (errorMsg) {
+            errorMsg.textContent = err.message || 'An error occurred. Please try again.';
+            errorMsg.classList.add('d-block');
+          }
+        });
+    });
+  })();
+
+  /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {
@@ -410,14 +466,18 @@
     // Each page type gets a DIFFERENT transition for variety
     switch(filename) {
       // Service pages - each gets a unique transition
-      case 'motor.html':
-        return 'slide';    // Motor: slides in like a car
-      case 'health.html':
-        return 'flip';     // Health: flip like medical records
-      case 'home.html':
-        return 'zoom';     // Home insurance: zoom in
-      case 'business.html':
-        return 'slide';    // Business: professional slide
+      case 'personal-protection.html':
+        return 'slide';
+      case 'property.html':
+        return 'flip';
+      case 'business-protection.html':
+        return 'zoom';
+      case 'professional-liability.html':
+        return 'slide';
+      case 'construction.html':
+        return 'flip';
+      case 'marine-cyber.html':
+        return 'zoom';
 
       // Going back to main homepage - use flip (like closing a folder/going back)
       case 'main.html':
@@ -602,4 +662,66 @@
     handlePageLoad();
     interceptNavigation();
   }
+})();
+
+/**
+ * Testimonial expand modal
+ */
+(function () {
+  var items = document.querySelectorAll('.testimonial-item[data-name]');
+  if (!items.length) return;
+
+  var overlay = document.createElement('div');
+  overlay.className = 'testimonial-modal-overlay';
+  overlay.style.display = 'none';
+  overlay.innerHTML =
+    '<div class="testimonial-modal">' +
+      '<button class="testimonial-modal-close" aria-label="Close"><i class="bi bi-x"></i></button>' +
+      '<div id="tm-avatar-container"></div>' +
+      '<h3 id="tm-name"></h3>' +
+      '<h4 id="tm-title"></h4>' +
+      '<p class="testimonial-full-quote" id="tm-quote"></p>' +
+    '</div>';
+  document.body.appendChild(overlay);
+
+  function openModal(item) {
+    var name = item.getAttribute('data-name');
+    var title = item.getAttribute('data-title');
+    var monogram = item.getAttribute('data-monogram') || '';
+    var fullTextEl = item.querySelector('.testimonial-full-text');
+    var quote = fullTextEl ? fullTextEl.textContent : '';
+    var imgEl = item.querySelector('.testimonial-avatar');
+    var avatarVisible = imgEl && imgEl.style.display !== 'none';
+
+    var container = document.getElementById('tm-avatar-container');
+    if (avatarVisible) {
+      container.innerHTML = '<img class="testimonial-avatar" src="' + imgEl.src + '" alt="' + name + '">';
+    } else {
+      container.innerHTML = '<div class="testimonial-monogram" style="display:flex;">' + monogram + '</div>';
+    }
+
+    document.getElementById('tm-name').textContent = name;
+    document.getElementById('tm-title').textContent = title;
+    document.getElementById('tm-quote').textContent = quote;
+    overlay.style.display = '';
+  }
+
+  items.forEach(function (item) {
+    item.addEventListener('click', function () { openModal(item); });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(item); }
+    });
+  });
+
+  overlay.querySelector('.testimonial-modal-close').addEventListener('click', function () {
+    overlay.style.display = 'none';
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.style.display = 'none';
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.style.display !== 'none') overlay.style.display = 'none';
+  });
 })();

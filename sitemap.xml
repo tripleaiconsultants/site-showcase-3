@@ -2,20 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- EN Pages -->
   <url><loc>https://www.eacinsurance.com/main.html</loc><priority>1.0</priority></url>
-  <url><loc>https://www.eacinsurance.com/motor.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.eacinsurance.com/health.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.eacinsurance.com/home.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.eacinsurance.com/business.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/personal-protection.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/property.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/business-protection.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/professional-liability.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/construction.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/marine-cyber.html</loc><priority>0.9</priority></url>
   <url><loc>https://www.eacinsurance.com/privacy-policy.html</loc><priority>0.3</priority></url>
   <url><loc>https://www.eacinsurance.com/cookie-policy.html</loc><priority>0.3</priority></url>
   <url><loc>https://www.eacinsurance.com/disclosures.html</loc><priority>0.3</priority></url>
   <url><loc>https://www.eacinsurance.com/terms.html</loc><priority>0.3</priority></url>
   <!-- EL Pages -->
   <url><loc>https://www.eacinsurance.com/EL/main.html</loc><priority>1.0</priority></url>
-  <url><loc>https://www.eacinsurance.com/EL/motor.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.eacinsurance.com/EL/health.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.eacinsurance.com/EL/home.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.eacinsurance.com/EL/business.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/personal-protection.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/property.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/business-protection.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/professional-liability.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/construction.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eacinsurance.com/EL/marine-cyber.html</loc><priority>0.9</priority></url>
   <url><loc>https://www.eacinsurance.com/EL/privacy-policy.html</loc><priority>0.3</priority></url>
   <url><loc>https://www.eacinsurance.com/EL/cookie-policy.html</loc><priority>0.3</priority></url>
   <url><loc>https://www.eacinsurance.com/EL/disclosures.html</loc><priority>0.3</priority></url>

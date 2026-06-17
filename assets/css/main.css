@@ -1825,65 +1825,51 @@ section,
 }
 
 /* Overlapping Image Collage */
-.about .image-collage {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  margin: 20px 0;
+/* About images: stacked pair (sections 1 & 3) + centered awards (section 2) */
+.about .image-collage.collage-left {
+  position: static;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin: 0 auto;
 }
 
-.about .collage-bg {
-  position: absolute;
-  width: 75%;
-  height: 75%;
+.about .image-collage.collage-left > a {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 0;
+}
+
+.about .collage-left .collage-bg,
+.about .collage-left .collage-overlay {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  z-index: 1;
+  border: none;
 }
 
-.about .collage-overlay {
-  position: absolute;
-  width: 60%;
-  height: 60%;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 4px solid #BC9042;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
-  z-index: 2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.about .image-collage.collage-right {
+  position: static;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.about .collage-overlay:hover {
-  transform: scale(1.03);
-  box-shadow: 0 20px 60px rgba(188, 144, 66, 0.4);
-}
-
-/* Overlay positioning variants */
-.about .overlay-topright {
-  top: 0;
-  right: 0;
-}
-
-.about .overlay-bottomleft {
-  bottom: 0;
-  left: 0;
-}
-
-.about .overlay-bottomright {
-  bottom: 0;
-  right: 0;
-}
-
-/* Collage alignment */
-.about .collage-left .collage-bg {
-  top: 50px;
-  left: 0;
-}
-
-.about .collage-right .collage-bg {
-  top: 50px;
-  right: 0;
+.about .collage-bg.awards-collage-image {
+  position: static;
+  inset: auto;
+  width: 96%;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* Add clickable lightbox effect */
@@ -1942,46 +1928,39 @@ section,
   flex-shrink: 0;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments — stacked layout (collage-left) stays flex column at all sizes */
 @media (max-width: 992px) {
-  .about .image-collage {
-    height: 400px;
+  .about .image-collage.collage-left {
+    max-width: 500px;
+    margin: 40px auto;
+  }
+
+  .about .image-collage.collage-right {
     margin: 40px auto;
     max-width: 500px;
-  }
-
-  .about .collage-bg {
-    width: 70%;
-    height: 70%;
-  }
-
-  .about .collage-overlay {
-    width: 55%;
-    height: 55%;
   }
 }
 
 @media (max-width: 768px) {
-  .about .image-collage {
-    height: 350px;
+  .about .image-collage.collage-left {
     max-width: 400px;
   }
 
-  .about .collage-bg {
-    width: 80%;
-    height: 80%;
+  .about .collage-left .collage-overlay {
+    border-width: 3px;
   }
 
-  .about .collage-overlay {
-    width: 60%;
-    height: 60%;
-    border-width: 3px;
+  .about .image-collage.collage-right {
+    max-width: 400px;
   }
 }
 
 @media (max-width: 480px) {
-  .about .image-collage {
-    height: 300px;
+  .about .image-collage.collage-left {
+    max-width: 320px;
+  }
+
+  .about .image-collage.collage-right {
     max-width: 320px;
   }
 }
@@ -2094,9 +2073,15 @@ section,
 /* Services Section Styles */
 .services {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 10px;
+}
+
+@media (max-width: 1199px) {
+    .services {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 991px) {
@@ -2205,6 +2190,8 @@ section,
 .testimonials {
   padding: 80px 0;
   position: relative;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .testimonials:before {
@@ -2223,6 +2210,7 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  will-change: transform;
 }
 
 .testimonials .container {
@@ -2671,6 +2659,10 @@ section,
 .faq .faq-container .faq-active .faq-toggle {
   transform: rotate(90deg);
   color: var(--accent-color);
+}
+
+.faq .faq-container .faq-active h3 .num {
+  color: var(--contrast-color);
 }
 
 /*--------------------------------------------------------------
@@ -3287,9 +3279,12 @@ div#bp-web-widget-container {
  * FIXED: Removed transform to allow fixed positioning of chat/popups
  */
 body.index-page,
-body.home-page,
-body.motor-page,
-body.business-page {
+body.personal-protection-page,
+body.property-page,
+body.business-protection-page,
+body.professional-liability-page,
+body.construction-page,
+body.marine-cyber-page {
   opacity: 0; 
   animation: pageFadeIn 1.5s ease-out forwards;
 }
@@ -4404,4 +4399,220 @@ body.dark-mode .challenge-cta:hover {
 
 .legal-content a:hover {
   text-decoration: underline;
+}
+
+/* Fixed widget container must be click-through; only its visible UI captures clicks */
+.side-popup-widget {
+  pointer-events: none !important;
+}
+.side-popup-widget .popup-open-btn,
+.side-popup-widget .popup-content {
+  pointer-events: auto !important;
+}
+
+/* Chatbot consent launcher — floating chat icon */
+.chatbot-consent-launcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9998;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  color: #BC9042;
+  border: 2px solid #BC9042;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.chatbot-consent-launcher:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(188,144,66,0.35);
+}
+
+/* Chatbot consent card — compact, anchored bottom-right */
+.chatbot-consent-card {
+  position: fixed;
+  bottom: 82px;
+  right: 20px;
+  z-index: 9999;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  background: #1a1a2e;
+  color: #e8e8e8;
+  border-radius: 12px;
+  border: 1px solid #BC9042;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  font-family: var(--default-font), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.chatbot-consent-card p {
+  margin: 0 0 16px 0;
+}
+.chatbot-consent-card a {
+  color: #BC9042;
+  text-decoration: underline;
+}
+.chatbot-consent-card .chatbot-card-accept {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  background: #BC9042;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.chatbot-consent-card .chatbot-card-accept:hover {
+  background: #a8742d;
+}
+.chatbot-consent-card .chatbot-card-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.chatbot-consent-card .chatbot-card-close:hover {
+  color: #BC9042;
+}
+
+@media (max-width: 480px) {
+  .chatbot-consent-card {
+    bottom: 80px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+}
+
+/* Testimonial avatar cards */
+.testimonial-item {
+  cursor: pointer;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #BC9042;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.testimonial-monogram {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  border: 3px solid #BC9042;
+  color: #BC9042;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-family: var(--heading-font), sans-serif;
+}
+
+.testimonial-quote {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Testimonial expand modal */
+.testimonial-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200001;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.testimonial-modal {
+  background: #1a1a2e;
+  color: #e8e8e8;
+  border-radius: 12px;
+  border: 1px solid #BC9042;
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 32px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.testimonial-modal .testimonial-avatar {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.testimonial-modal .testimonial-monogram {
+  width: 100px;
+  height: 100px;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.testimonial-modal h3 {
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.testimonial-modal h4 {
+  color: #BC9042;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.testimonial-modal .testimonial-full-quote {
+  font-style: italic;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.testimonial-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.testimonial-modal-close:hover {
+  color: #BC9042;
 }

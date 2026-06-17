@@ -25,10 +25,8 @@
       cancel: 'Cancel',
       alwaysOn: 'Always on',
       bannerFooter: 'Learn more in our <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a>.',
-      chatbotTitle: 'Chat Assistant',
-      chatbotBody: 'Our chat assistant is powered by artificial intelligence. Conversations may be recorded for quality and improvement purposes. Please do not enter sensitive personal, medical, or financial information. Do you consent to use the chat assistant?',
-      chatbotAccept: 'Accept',
-      chatbotCancel: 'Cancel'
+      chatbotBody: 'Before we start: this is an AI assistant and conversations may be recorded to improve our service. Please don\'t share sensitive personal, medical or financial details. See our <a href="privacy-policy.html">Privacy Policy</a> & <a href="terms.html">Terms</a>.',
+      chatbotAccept: 'Accept & Continue'
     },
     el: {
       title: 'Ρυθμίσεις Cookies',
@@ -45,10 +43,8 @@
       cancel: 'Άκυρο',
       alwaysOn: 'Πάντα ενεργά',
       bannerFooter: 'Μάθετε περισσότερα στην <a href="privacy-policy.html">Πολιτική Απορρήτου</a> και την <a href="cookie-policy.html">Πολιτική Cookies</a> μας.',
-      chatbotTitle: 'Ψηφιακός Βοηθός',
-      chatbotBody: 'Ο βοηθός συνομιλίας μας λειτουργεί με τεχνητή νοημοσύνη. Οι συνομιλίες ενδέχεται να καταγράφονται για σκοπούς ποιότητας και βελτίωσης. Παρακαλούμε μην εισάγετε ευαίσθητα προσωπικά, ιατρικά ή οικονομικά στοιχεία. Συναινείτε στη χρήση του βοηθού συνομιλίας;',
-      chatbotAccept: 'Αποδοχή',
-      chatbotCancel: 'Άκυρο'
+      chatbotBody: 'Πριν ξεκινήσουμε: αυτός είναι ψηφιακός βοηθός AI και οι συνομιλίες ενδέχεται να καταγράφονται για βελτίωση της υπηρεσίας μας. Παρακαλούμε μην μοιράζεστε ευαίσθητα προσωπικά, ιατρικά ή οικονομικά στοιχεία. Δείτε την <a href="privacy-policy.html">Πολιτική Απορρήτου</a> & τους <a href="terms.html">Όρους</a>.',
+      chatbotAccept: 'Αποδοχή & Συνέχεια'
     }
   };
 
@@ -158,37 +154,45 @@
     }
   }
 
-  // --- Chatbot Consent Modal ---
-  var chatbotModalEl = null;
+  // --- Chatbot Consent Card (compact, anchored to bottom corner) ---
+  var chatbotLauncherEl = null;
+  var chatbotCardEl = null;
 
   function checkChatbotConsent() {
     var status = sessionStorage.getItem('chatbot_consent');
     if (status === 'accepted') { loadBotpress(); return; }
     if (status === 'declined') { return; }
-    showChatbotModal();
+    showChatbotLauncher();
   }
 
-  function createChatbotModal() {
-    var lang = t();
-    var overlay = document.createElement('div');
-    overlay.className = 'cmp-modal-overlay';
-    overlay.id = 'chatbot-consent-overlay';
-    overlay.style.display = 'none';
-    overlay.innerHTML =
-      '<div class="cmp-modal" role="dialog" aria-modal="true" aria-label="' + lang.chatbotTitle + '">' +
-        '<h3>' + lang.chatbotTitle + '</h3>' +
-        '<p>' + lang.chatbotBody + '</p>' +
-        '<div class="cmp-modal-actions">' +
-          '<button class="cmp-btn cmp-btn-cancel" id="chatbot-cancel">' + lang.chatbotCancel + '</button>' +
-          '<button class="cmp-btn cmp-btn-save" id="chatbot-accept">' + lang.chatbotAccept + '</button>' +
-        '</div>' +
-      '</div>';
-    document.body.appendChild(overlay);
-    chatbotModalEl = overlay;
+  function createChatbotLauncher() {
+    var btn = document.createElement('button');
+    btn.className = 'chatbot-consent-launcher';
+    btn.id = 'chatbot-consent-launcher';
+    btn.setAttribute('aria-label', t().chatbotAccept);
+    btn.innerHTML = '<i class="bi bi-chat-dots-fill"></i>';
+    btn.addEventListener('click', function () { showChatbotCard(); });
+    document.body.appendChild(btn);
+    chatbotLauncherEl = btn;
+  }
 
-    document.getElementById('chatbot-accept').addEventListener('click', function () {
+  function createChatbotCard() {
+    var lang = t();
+    var card = document.createElement('div');
+    card.className = 'chatbot-consent-card';
+    card.id = 'chatbot-consent-card';
+    card.setAttribute('role', 'dialog');
+    card.setAttribute('aria-label', 'Chat consent');
+    card.style.display = 'none';
+    card.innerHTML =
+      '<button class="chatbot-card-close" aria-label="Close"><i class="bi bi-x"></i></button>' +
+      '<p>' + lang.chatbotBody + '</p>' +
+      '<button class="chatbot-card-accept" id="chatbot-card-accept">' + lang.chatbotAccept + '</button>';
+    document.body.appendChild(card);
+    chatbotCardEl = card;
+
+    document.getElementById('chatbot-card-accept').addEventListener('click', function () {
       sessionStorage.setItem('chatbot_consent', 'accepted');
-      // Log to Cloudflare Worker
       if (CONSENT_LOG_URL) {
         try {
           fetch(CONSENT_LOG_URL, {
@@ -204,37 +208,52 @@
               page_path: window.location.pathname
             })
           }).catch(function () {
-            // Fallback: store timestamp in localStorage
             localStorage.setItem('chatbot_consent_timestamp', new Date().toISOString());
           });
         } catch (e) {
           localStorage.setItem('chatbot_consent_timestamp', new Date().toISOString());
         }
       }
-      hideChatbotModal();
+      hideChatbotCard();
+      hideChatbotLauncher();
       loadBotpress();
     });
 
-    document.getElementById('chatbot-cancel').addEventListener('click', function () {
-      sessionStorage.setItem('chatbot_consent', 'declined');
-      hideChatbotModal();
+    card.querySelector('.chatbot-card-close').addEventListener('click', function () {
+      hideChatbotCard();
     });
 
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) {
-        sessionStorage.setItem('chatbot_consent', 'declined');
-        hideChatbotModal();
+    document.addEventListener('click', function (e) {
+      if (chatbotCardEl && chatbotCardEl.style.display !== 'none' &&
+          !chatbotCardEl.contains(e.target) &&
+          chatbotLauncherEl && !chatbotLauncherEl.contains(e.target)) {
+        hideChatbotCard();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && chatbotCardEl && chatbotCardEl.style.display !== 'none') {
+        hideChatbotCard();
       }
     });
   }
 
-  function showChatbotModal() {
-    if (!chatbotModalEl) createChatbotModal();
-    chatbotModalEl.style.display = '';
+  function showChatbotLauncher() {
+    if (!chatbotLauncherEl) createChatbotLauncher();
+    chatbotLauncherEl.style.display = '';
   }
 
-  function hideChatbotModal() {
-    if (chatbotModalEl) chatbotModalEl.style.display = 'none';
+  function hideChatbotLauncher() {
+    if (chatbotLauncherEl) chatbotLauncherEl.style.display = 'none';
+  }
+
+  function showChatbotCard() {
+    if (!chatbotCardEl) createChatbotCard();
+    chatbotCardEl.style.display = '';
+  }
+
+  function hideChatbotCard() {
+    if (chatbotCardEl) chatbotCardEl.style.display = 'none';
   }
 
   // --- Banner ---
@@ -364,7 +383,6 @@
   function init() {
     createBanner();
     createModal();
-    createChatbotModal();
 
     var existing = loadConsent();
     if (existing && existing.choices && existing.policy_version === POLICY_VERSION) {
