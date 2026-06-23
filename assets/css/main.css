@@ -1605,27 +1605,14 @@ section,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% auto;
-  animation: gradientShift 4s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
 }
 
 .hero h1 span {
   color: var(--hero-color);
   background: linear-gradient(135deg, var(--hero-color, #111) 0%, var(--accent-color) 60%, #8B6F47 100%);
-  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 4s ease infinite;
 }
 
 .hero p {
@@ -2190,8 +2177,6 @@ section,
 .testimonials {
   padding: 80px 0;
   position: relative;
-  transform: translateZ(0);
-  will-change: transform;
 }
 
 .testimonials:before {
@@ -2210,7 +2195,6 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  will-change: transform;
 }
 
 .testimonials .container {

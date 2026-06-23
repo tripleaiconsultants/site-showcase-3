@@ -986,12 +986,10 @@
         video.muted = true;
         video.defaultMuted = true;
 
-        // Force play with better error handling
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(error => {
             console.log('Video autoplay prevented:', error);
-            // Try to play on user interaction
             document.addEventListener('touchstart', function playOnTouch() {
               video.play().catch(() => { });
               document.removeEventListener('touchstart', playOnTouch);
@@ -1001,21 +999,21 @@
       }
     }
 
-    // Remove controls on load
+    removeVideoControls();
     document.addEventListener('DOMContentLoaded', removeVideoControls);
 
-    // Also try immediately
-    removeVideoControls();
-
-    // Remove controls when tab becomes visible
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
-        removeVideoControls();
-      }
+      if (!document.hidden) removeVideoControls();
     });
 
-    // Continuously monitor and remove controls
-    setInterval(removeVideoControls, 500);
+    (function() {
+      var video = document.querySelector('.hero-video');
+      if (video && typeof MutationObserver !== 'undefined') {
+        new MutationObserver(function() {
+          if (video.hasAttribute('controls')) video.removeAttribute('controls');
+        }).observe(video, { attributes: true, attributeFilter: ['controls'] });
+      }
+    })();
   </script>
 
   <!-- Reduced Motion: pause video for users who prefer reduced motion -->

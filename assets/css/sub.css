@@ -1482,9 +1482,7 @@ section,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% auto;
-  animation: slideInLeftJuicy 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards,
-             gradientShift 4s ease infinite 1.5s;
+  animation: slideInLeftJuicy 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
 .hero-image-section .hero-text p {
@@ -1575,14 +1573,6 @@ section,
   }
 }
 
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
 
 /* Staggered word animation effect */
 .hero-image-section .hero-text h1 {
