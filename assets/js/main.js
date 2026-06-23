@@ -95,18 +95,18 @@
     });
   });
   
-  // Prevent parent link from navigating and trigger dropdown on mobile
+  // Prevent parent link from navigating (href="#" scrolls to top otherwise)
   document.querySelectorAll('.navmenu .dropdown > a').forEach(link => {
     link.addEventListener('click', function(e) {
-      // Only prevent default on mobile
+      e.preventDefault();
+
+      // Toggle dropdown submenu on mobile
       if (window.innerWidth < 1200) {
-        e.preventDefault();
         e.stopPropagation();
-        
-        // Get the parent <li> and the dropdown menu
+
         const dropdownLi = this.parentNode;
         const dropdownMenu = dropdownLi.querySelector('ul');
-        
+
         // Close all other dropdowns first
         document.querySelectorAll('.navmenu .dropdown').forEach(otherDropdown => {
           if (otherDropdown !== dropdownLi) {
@@ -117,8 +117,7 @@
             }
           }
         });
-        
-        // Toggle current dropdown
+
         dropdownLi.classList.toggle('active');
         if (dropdownMenu) {
           dropdownMenu.classList.toggle('dropdown-active');
