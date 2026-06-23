@@ -22,7 +22,7 @@
   z-index: 99999;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.15s ease;
 }
 
 /* Dark mode transition overlay - prevents white flash */
@@ -64,7 +64,7 @@ body.transitioning-in .main {
 
 /* Exiting: zoom out and fade */
 body.transitioning-out[data-transition="zoom"] .main {
-  animation: zoomOut 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
+  animation: zoomOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 @keyframes zoomOut {
@@ -80,7 +80,7 @@ body.transitioning-out[data-transition="zoom"] .main {
 
 /* Entering: zoom in from larger */
 body.transitioning-in[data-transition="zoom"] .main {
-  animation: zoomIn 0.4s cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: zoomIn 0.25s cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
 @keyframes zoomIn {
@@ -100,7 +100,7 @@ body.transitioning-in[data-transition="zoom"] .main {
 
 /* Exiting: current page slides fully out to the left */
 body.transitioning-out[data-transition="slide"] .main {
-  animation: slideOut 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
+  animation: slideOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 @keyframes slideOut {
@@ -116,7 +116,7 @@ body.transitioning-out[data-transition="slide"] .main {
 
 /* Entering: new page slides in from the right */
 body.transitioning-in[data-transition="slide"] .main {
-  animation: slideIn 0.4s cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: slideIn 0.25s cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
 @keyframes slideIn {
@@ -136,7 +136,7 @@ body.transitioning-in[data-transition="slide"] .main {
 
 /* Exiting: page flips away like turning a book page */
 body.transitioning-out[data-transition="flip"] .main {
-  animation: flipOut 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+  animation: flipOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
   transform-style: preserve-3d;
   transform-origin: left center;
 }
@@ -154,7 +154,7 @@ body.transitioning-out[data-transition="flip"] .main {
 
 /* Entering: new page flips in like the next book page */
 body.transitioning-in[data-transition="flip"] .main {
-  animation: flipIn 0.45s cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: flipIn 0.25s cubic-bezier(0, 0, 0.2, 1) forwards;
   transform-style: preserve-3d;
   transform-origin: right center;
 }

@@ -505,24 +505,23 @@
     if (document.body.classList.contains('transitioning-out')) return;
 
     const overlay = getTransitionOverlay();
-    
+
     document.body.classList.add('transitioning-out');
     document.body.setAttribute('data-transition', transitionType);
 
-    // Show overlay to prevent white flash (inherits dark mode bg color from CSS)
+    // Show overlay to prevent white flash
     setTimeout(() => {
       overlay.classList.add('active');
-    }, 150);
+    }, 50);
 
     // Store for incoming page
     sessionStorage.setItem('pageTransition', transitionType);
-    // Also store dark mode state to restore on next page
     sessionStorage.setItem('darkModeTransition', document.body.classList.contains('dark-mode') ? 'true' : 'false');
 
     // Navigate after the exit animation plays
     setTimeout(() => {
       window.location.href = url;
-    }, 280);
+    }, 180);
   }
 
   // Handle incoming transition on page load
@@ -541,29 +540,24 @@
         overlay.style.backgroundColor = '#0a1929';
       }
       
-      // Start with overlay visible to hide any flash
       overlay.classList.add('active');
 
-      // Hide all AOS elements initially during transition
       document.body.classList.add('aos-delay-init');
-
-      // Add class for incoming animation
       document.body.classList.add('transitioning-in');
       document.body.setAttribute('data-transition', transitionType);
 
-      // Fade out overlay after a brief moment
+      // Fade out overlay quickly
       setTimeout(() => {
         overlay.classList.remove('active');
-        overlay.style.backgroundColor = ''; // Reset to CSS-controlled color
-      }, 100);
+        overlay.style.backgroundColor = '';
+      }, 30);
 
-      // Clean up after animation and THEN start page animations
+      // Clean up after enter animation and start AOS
       setTimeout(() => {
         document.body.classList.remove('transitioning-in');
         document.body.removeAttribute('data-transition');
         document.body.classList.remove('aos-delay-init');
 
-        // Initialize AOS AFTER transition completes
         if (typeof AOS !== 'undefined') {
           AOS.init({
             duration: 600,
@@ -572,7 +566,7 @@
             mirror: false
           });
         }
-      }, 450);
+      }, 300);
     }
   }
 
