@@ -2148,6 +2148,16 @@ section,
     margin-bottom: 25px;
 }
 
+.service-card .back .service-category {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #BC9042;
+    margin-bottom: 8px;
+    font-family: var(--heading-font);
+}
+
 .service-card .back h3 {
     font-size: 22px;
     font-weight: 700;
