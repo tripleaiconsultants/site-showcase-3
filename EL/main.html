@@ -573,7 +573,7 @@
               </div>
 
               <div class="faq-item">
-                <h3><span class="num"><i class="bi bi-shield-check"></i></span> Επιδιόρθωση Παρμπρίζ / Τζαμιών</h3>
+                <h3><span class="num"><i class="bi bi-shield-check"></i></span> Επιδιόρθωση Ανεμοθώρακα / Παράθυρου</h3>
                 <div class="faq-content">
                   <p><a href="tel:+35777776065" style="font-size:1.4rem;font-weight:700;color:var(--contrast-color);text-decoration:none;">7777 6065</a></p>
                 </div>
@@ -894,7 +894,7 @@
 
   <!-- Chat Bubble Script -->
   <script>
-    let hasOpenedChat = sessionStorage.getItem('hasOpenedChat') === 'true';
+    let hasOpenedChat = false;
 
     const onBotpressAvailable = () => {
       let bubble = document.getElementById('custom-chat-bubble');
@@ -908,11 +908,10 @@
           if (window.botpress) {
             window.botpress.open();
             hasOpenedChat = true;
-            sessionStorage.setItem('hasOpenedChat', 'true');
           }
         });
       }
-      bubble.style.display = hasOpenedChat ? 'none' : 'block';
+      bubble.style.display = 'block';
       bubble.classList.remove('no-animations');
       document.body.classList.remove('no-chat-animations', 'chat-unavailable');
 
@@ -920,7 +919,6 @@
         const bubble = document.getElementById('custom-chat-bubble');
         if (bubble) bubble.style.display = 'none';
         hasOpenedChat = true;
-        sessionStorage.setItem('hasOpenedChat', 'true');
       });
       window.botpress.on('webchat:closed', () => {
         if (!hasOpenedChat) {
