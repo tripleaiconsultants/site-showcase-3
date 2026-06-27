@@ -477,17 +477,16 @@ body.dark-mode .hero:before {
   background: color-mix(in srgb, #061729, transparent 30%);
 }
 
-body.dark-mode .hero h1,
-body.dark-mode .hero p {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
+body.dark-mode .hero .hero-heading,
+body.dark-mode .hero .hero-subtext {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
   text-shadow: 2px 2px 4px rgba(6, 23, 41, 0.5);
 }
 
-body.dark-mode .hero h1 span {
-  color: var(--accent-color) !important;
-  -webkit-text-fill-color: var(--accent-color) !important;
-  text-shadow: 2px 2px 4px rgba(6, 23, 41, 0.5);
+body.dark-mode .hero .hero-heading span {
+  color: var(--accent-color);
+  -webkit-text-fill-color: var(--accent-color);
 }
 
 /* Scroll top button in dark mode */
@@ -1598,9 +1597,9 @@ section,
   position: relative;
 }
 
-.hero h1 {
-  color: #0a1929 !important;
-  -webkit-text-fill-color: #0a1929 !important;
+.hero .hero-heading {
+  color: #0a1929;
+  -webkit-text-fill-color: #0a1929;
   margin: 0;
   font-size: 55px;
   font-weight: 700;
@@ -1608,14 +1607,14 @@ section,
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
 }
 
-.hero h1 span {
-  color: var(--accent-color) !important;
-  -webkit-text-fill-color: var(--accent-color) !important;
+.hero .hero-heading span {
+  color: var(--accent-color);
+  -webkit-text-fill-color: var(--accent-color);
 }
 
-.hero p {
-  color: #0a1929 !important;
-  -webkit-text-fill-color: #0a1929 !important;
+.hero .hero-subtext {
+  color: #0a1929;
+  -webkit-text-fill-color: #0a1929;
   margin: 5px 0 30px 0;
   font-size: 20px;
   font-weight: 500;
