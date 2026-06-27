@@ -1597,7 +1597,8 @@ section,
 }
 
 .hero h1 {
-  color: #0a1929;
+  color: #0a1929 !important;
+  -webkit-text-fill-color: #0a1929 !important;
   margin: 0;
   font-size: 55px;
   font-weight: 700;
@@ -1606,11 +1607,13 @@ section,
 }
 
 .hero h1 span {
-  color: var(--accent-color);
+  color: var(--accent-color) !important;
+  -webkit-text-fill-color: var(--accent-color) !important;
 }
 
 .hero p {
-  color: #0a1929;
+  color: #0a1929 !important;
+  -webkit-text-fill-color: #0a1929 !important;
   margin: 5px 0 30px 0;
   font-size: 20px;
   font-weight: 500;
