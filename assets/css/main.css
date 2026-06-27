@@ -1764,7 +1764,7 @@ section,
 
 .about .about-content ul li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 35px;
 }
 
