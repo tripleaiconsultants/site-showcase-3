@@ -1884,7 +1884,7 @@ section,
 
 .about .about-content ul li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 20px;
   padding: 15px;
   background: rgba(188, 144, 66, 0.05);
