@@ -479,12 +479,14 @@ body.dark-mode .hero:before {
 
 body.dark-mode .hero h1,
 body.dark-mode .hero p {
-  color: #ffffff;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
   text-shadow: 2px 2px 4px rgba(6, 23, 41, 0.5);
 }
 
 body.dark-mode .hero h1 span {
-  color: var(--accent-color);
+  color: var(--accent-color) !important;
+  -webkit-text-fill-color: var(--accent-color) !important;
   text-shadow: 2px 2px 4px rgba(6, 23, 41, 0.5);
 }
 
