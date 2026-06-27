@@ -484,11 +484,6 @@ body.dark-mode .hero .hero-subtext {
   text-shadow: 2px 2px 4px rgba(6, 23, 41, 0.5);
 }
 
-body.dark-mode .hero .hero-heading span {
-  color: var(--accent-color);
-  -webkit-text-fill-color: var(--accent-color);
-}
-
 /* Scroll top button in dark mode */
 body.dark-mode .scroll-top {
   background-color: var(--accent-color);
@@ -1605,11 +1600,6 @@ section,
   font-weight: 700;
   line-height: 56px;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
-}
-
-.hero .hero-heading span {
-  color: var(--accent-color);
-  -webkit-text-fill-color: var(--accent-color);
 }
 
 .hero .hero-subtext {
