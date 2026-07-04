@@ -1,0 +1,15 @@
+{
+  "name": "eac-contact-form",
+  "main": "src/index.js",
+  "compatibility_date": "2025-01-01",
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["noreply@eacinsurance.com"]
+    }
+  ],
+  "vars": {
+    "RECIPIENT_EMAIL": "e.a.c.insurances@outlook.com",
+    "ALLOWED_ORIGINS": "https://tripleaiconsultants.github.io,https://eacinsurance.com,http://localhost:8080"
+  }
+}
