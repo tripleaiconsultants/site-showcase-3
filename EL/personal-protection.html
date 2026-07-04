@@ -252,10 +252,13 @@
                   <p>e.a.c.insurances@outlook.com</p>
                 </div>
               </div>
-              <iframe
-                src="https://www.google.com/maps?q=Apostolou+Varnava+51A,+Limassol+3065,+Cyprus&output=embed"
-                frameborder="0" class="contact-map-embed" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="map-consent-placeholder contact-map-embed">
+                <div class="map-consent-inner">
+                  <i class="bi bi-geo-alt"></i>
+                  <p>Πατώντας παρακάτω θα φορτωθεί ο Χάρτης Google και θα κοινοποιηθούν δεδομένα (συμπεριλαμβανομένης της IP σας) στην Google LLC.</p>
+                  <button class="map-consent-btn" onclick="this.closest('.map-consent-placeholder').outerHTML='<iframe src=\'https://www.google.com/maps?q=Apostolou+Varnava+51A,+Limassol+3065,+Cyprus&amp;output=embed\' frameborder=\'0\' class=\'contact-map-embed\' allowfullscreen loading=\'lazy\' referrerpolicy=\'no-referrer-when-downgrade\'></iframe>'">Φόρτωση Χάρτη</button>
+                </div>
+              </div>
             </div>
           </div>
 
