@@ -1808,7 +1808,6 @@ section,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
   margin: 0 auto;
 }
 
@@ -1820,11 +1819,17 @@ section,
 }
 
 .about .image-collage.collage-left > a:nth-child(2) {
+  margin-top: -25px;
   transform: translateX(20px);
+  position: relative;
+  z-index: 2;
 }
 
 .about .image-collage.collage-left > a:nth-child(3) {
+  margin-top: -25px;
   transform: translateX(-20px);
+  position: relative;
+  z-index: 3;
 }
 
 .about .collage-left .collage-img {
