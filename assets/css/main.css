@@ -773,6 +773,7 @@ html.dark-mode body {
   border: 1px dashed color-mix(in srgb, var(--default-color), transparent 70%);
   border-radius: 8px;
   min-height: 270px;
+  margin-top: 20px;
 }
 
 .map-consent-inner {
