@@ -69,7 +69,7 @@ Source: BootstrapMade BizLand template. License: BootstrapMade free license — 
 
 | Path | Type | Size | License | Attribution Required | Notes |
 |------|------|------|---------|---------------------|-------|
-| assets/img/video_new.mp4 | Video | 8.7M | MotionArray free-tier license | No | Insurance concept, toy cars & agent. Downloaded under free-account license. Commercial use permitted per MotionArray free-tier terms. |
+| assets/img/video_new.mp4 | Video | 8.7M | MotionArray free-tier license | No | Insurance concept, toy cars & agent. Downloaded under free-account license. Commercial use permitted per MotionArray free-tier terms. Source: https://motionarray.com/stock-video/insurance-concept-toy-cars-agent-2106473/ |
 | assets/img/video_poster.jpg | Image | 85K | Derived from MotionArray video | No | Poster frame extracted from video_new.mp4 |
 
 ## Magnific (Freepik) licensed imagery — attribution in footer
