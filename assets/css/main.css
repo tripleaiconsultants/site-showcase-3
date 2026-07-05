@@ -1106,7 +1106,8 @@ html.dark-mode body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
     transition: 0.3s;
   }
 
@@ -1706,12 +1707,14 @@ section,
 }
 
 @media (max-width: 640px) {
-  .hero h1 {
+  .hero h1,
+  .hero .hero-heading {
     font-size: 28px;
     line-height: 36px;
   }
 
-  .hero p {
+  .hero p,
+  .hero .hero-subtext {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
