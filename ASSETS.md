@@ -83,16 +83,29 @@ Source: Magnific.com (Freepik Company S.L.U.). License: "Free for commercial use
 | assets/img/house_3d.webp | Illustration | 130K | Magnific free (with attribution) | Yes (footer credit) | Home insurance service image. Author: Freepik. URL: https://www.magnific.com/free-photo/house-3d-rendering-design_45127176.htm. License PDF: _archive/licenses/magnific-house_3d.pdf |
 | assets/img/business_3d.webp | Illustration | 56K | Magnific free (with attribution) | Yes (footer credit) | Business insurance service image. Author: vectorpocket. URL: https://www.magnific.com/free-vector/vector-3d-isometric-illustration-interior-office-room_1215811.htm. License PDF: _archive/licenses/magnific-business_3d.pdf |
 
-## Insurance-themed stock images — pending source confirmation
+## Insurance-themed stock images — Magnific (Freepik) licensed
 
-Source undocumented at time of download. **Action required before launch:** confirm source with previous developer or reverse-image-search via TinEye/Google Lens. If unverified, replace with properly licensed alternatives. See NOTES.md.
+Source: Magnific.com (Freepik Company S.L.U.). License: "Free for commercial use WITH ATTRIBUTION." Attribution satisfied via footer credit on all pages. License certificates stored in `_archive/licenses/`.
 
 | Path | Type | Size | License | Attribution Required | Notes |
 |------|------|------|---------|---------------------|-------|
-| assets/img/motor-insu.webp | Photo | 276K | TBD — pending source confirmation | TBD | Motor insurance page hero |
-| assets/img/health_insu.webp | Photo | 409K | TBD — pending source confirmation | TBD | Health insurance page hero |
-| assets/img/home_insu.webp | Photo | 122K | TBD — pending source confirmation | TBD | Home insurance page hero |
-| assets/img/business_insu.webp | Photo | 196K | TBD — pending source confirmation | TBD | Business insurance page hero |
+| assets/img/motor-insu.webp | Photo | 276K | Magnific free (with attribution) | Yes (footer credit) | Motor insurance page hero. Author: wirestock. License PDF: _archive/licenses/magnific-motor-insu.pdf |
+| assets/img/health_insu.webp | Photo | 409K | Magnific free (with attribution) | Yes (footer credit) | Health insurance page hero. Author: Freepik. License PDF: _archive/licenses/magnific-health_insu.pdf |
+| assets/img/home_insu.webp | Photo | 122K | Magnific free (with attribution) | Yes (footer credit) | Home insurance page hero. Author: macrovector. License PDF: _archive/licenses/magnific-home_insu.pdf |
+| assets/img/business_insu.webp | Photo | 196K | Magnific free (with attribution) | Yes (footer credit) | Business insurance page hero. Author: Freepik. License PDF: _archive/licenses/magnific-business_insu.pdf |
+
+## AI-generated images — Google Gemini
+
+Generated using Google Gemini. Per Google's Terms of Service (updated May 2024), output is owned by the user and commercial use is permitted without attribution. Invisible SynthID watermark embedded in pixel data by Google. No visible watermark or attribution required.
+
+| Path | Type | Size | License | Attribution Required | Notes |
+|------|------|------|---------|---------------------|-------|
+| assets/img/marine_3d.webp | AI illustration | 65K | Google Gemini ToS — user owns output | No | Marine/cargo insurance 3D render |
+| assets/img/marine_insu.webp | AI illustration | 141K | Google Gemini ToS — user owns output | No | Marine insurance page hero |
+| assets/img/construction_3d.webp | AI illustration | 65K | Google Gemini ToS — user owns output | No | Construction insurance 3D render |
+| assets/img/construction_insu.webp | AI illustration | 181K | Google Gemini ToS — user owns output | No | Construction insurance page hero |
+| assets/img/professional_3d.webp | AI illustration | 98K | Google Gemini ToS — user owns output | No | Professional liability 3D render |
+| assets/img/professional_insu.webp | AI illustration | 98K | Google Gemini ToS — user owns output | No | Professional liability page hero |
 
 ---
 
